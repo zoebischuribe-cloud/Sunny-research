@@ -254,6 +254,62 @@
 
 ---
 
-> **最后更新**: 2026-06-25
+> **最后更新**: 2026-06-26 (扩到 W16)
 > **下次复盘**: 2026-07-01
 > **下次更新**: 2026-08-01
+
+---
+
+## 🚀 第 13-16 周：商业化 + Q3 规划（W13 = 9/14 开始）
+
+| 周 | 周一选题 | 平台 | 钩子标题 |
+|----|---------|------|---------|
+| **W13** | 知识星球搭建 + 深度 SOP 系列开篇 | 公众号 + 知乎 | "把 5 年 scLLM 经验打包成知识星球，99 元/年值不值？" |
+| **W14** | scGPT 全量微调实战（Pretrain → Finetune → Eval） | 公众号 + GitHub | "我用 8 张 A100 把 scGPT 重新训了一遍，结果比官方还准" |
+| **W15** | Geneformer V2 与 scGPT 串联 Pipeline | 公众号 + 知乎 | "把 Geneformer 当 tokenizer，scGPT 当 decoder，效果炸了" |
+| **W16** | Q3 商业化复盘 + 咨询接单 | 公众号 + LinkedIn | "Q3 收入首破 5k，我接了 3 类技术咨询" |
+
+**配套短内容**：
+- W13: 知识星球目录预览（10 大专题）
+- W14: scGPT 训练 Loss 曲线 + 对比表
+- W15: 串联 Pipeline 架构图
+- W16: 季度数据看板（公众号阅读/知乎赞同/咨询收入）
+
+---
+
+## 🛠️ 自动化分发工作流（v2，2026-06-26 升级）
+
+### 命令一行流
+```bash
+sunny-publish-pipeline              # 默认: 全部最新未发布文章
+sunny-publish-pipeline post.md      # 指定单篇
+sunny-publish-pipeline --no-push    # 只生成分发文件不推送
+```
+
+### 完整链路
+```
+Hexo _posts/*.md
+   ↓ sunny-publish (Python, 6 平台)
+dist/<post-slug>/
+   ├─ wechat.html  (公众号美化版)
+   ├─ zhihu.md     (知乎 Markdown)
+   ├─ csdn.md      (CSDN)
+   ├─ juejin.md    (掘金)
+   ├─ twitter.txt  (X thread)
+   └─ linkedin.txt (LinkedIn 英文)
+   ↓ zoeb-push (自动注入 token)
+GitHub: zoebischuribe-cloud/Sunny-research
+   ↓ GitHub Actions (auto-distribute.yml)
+   ├─ 自动 commit + push
+   ├─ GitHub Pages 自动部署
+   └─ 飞书 webhook 通知（可选）
+```
+
+### 配套组件
+| 组件 | 路径 | 功能 |
+|------|------|------|
+| **sunny-publish-pipeline** | `~/3_Toolbox/bin/` | 一键分发 |
+| **sunny_publish.py** | `~/3_Toolbox/bin/` | 6 平台转换核心 |
+| **auto-distribute.yml** | `hexo-blog/.github/workflows/` | GH Actions 触发器 |
+| **zoeb-push** | `~/3_Toolbox/bin/` | token URL embed 推送 |
+| **feishu/webhook_url** | `~/.config/api-keys/` | 飞书通知（可选）|
