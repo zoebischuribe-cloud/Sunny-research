@@ -29,55 +29,6 @@
 
   
   <url>
-    <loc>https://zhuer.github.io/tags/scRNA-seq/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhuer.github.io/tags/Geneformer/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhuer.github.io/tags/scGPT/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhuer.github.io/tags/%E5%8D%95%E7%BB%86%E8%83%9E-Transformer/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhuer.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhuer.github.io/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E5%A4%A7%E6%A8%A1%E5%9E%8B/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhuer.github.io/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://zhuer.github.io/tags/forest-plot/</loc>
     <lastmod>2026-06-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -140,28 +91,56 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://zhuer.github.io/tags/scRNA-seq/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhuer.github.io/tags/Geneformer/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhuer.github.io/tags/scGPT/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhuer.github.io/tags/%E5%8D%95%E7%BB%86%E8%83%9E-Transformer/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhuer.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhuer.github.io/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E5%A4%A7%E6%A8%A1%E5%9E%8B/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhuer.github.io/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
-  
-  <url>
-    <loc>https://zhuer.github.io/categories/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhuer.github.io/categories/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhuer.github.io/categories/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
   
   <url>
     <loc>https://zhuer.github.io/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/</loc>
@@ -179,6 +158,27 @@
   
   <url>
     <loc>https://zhuer.github.io/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/SOP-%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhuer.github.io/categories/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhuer.github.io/categories/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhuer.github.io/categories/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2026-06-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
