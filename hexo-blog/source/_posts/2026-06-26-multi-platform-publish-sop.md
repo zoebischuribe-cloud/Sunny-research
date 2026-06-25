@@ -1,3 +1,21 @@
+---
+title: 多平台自动化分发 SOP — 一键同步 6 大平台
+slug: sunny-multi-platform-sop
+tags:
+  - SOP
+  - Sunny-research
+  - 多平台分发
+  - 个人IP
+categories:
+  - Sunny-research
+  - SOP工具
+description: >-
+  写一篇 Hexo 文章，一键同步到公众号/知乎/CSDN/掘金/Twitter/LinkedIn。配套 sunny-publish-pipeline
+  命令行工具。
+abbrlink: sunny-multi-platform-sop
+date: 2026-06-26 14:30:00
+---
+
 # 🚀 Sunny-research 多平台自动化分发 SOP
 
 > **Hermes**: 本文是 Sunny 个人 IP 内容矩阵的**标准化操作手册**，配套 `sunny-publish-pipeline` 一键命令，实现从 Hexo 文章 → 6 平台分发的全自动化。一次配置，永久收益。

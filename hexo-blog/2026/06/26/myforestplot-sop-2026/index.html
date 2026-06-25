@@ -337,7 +337,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.6k 字
+          7.8k 字
         
       </span>
     
@@ -348,7 +348,7 @@
         
         
         
-          64 分钟
+          65 分钟
         
       </span>
     
@@ -393,21 +393,13 @@
               <div class="markdown-body">
                 
                 <blockquote>
-<p><strong>Hermes</strong>: 本 SOP 是 Sunny-research
-“科研工具实测系列”第 1 篇。聚焦：① 真实跑通 ② API 穷举测试 ③ library bug
-修复 ④ 输出即用代码。所有命令可直接复制运行。</p>
+<p><strong>Hermes</strong>: 本 SOP 是 Sunny-research “科研工具实测系列”第 1 篇。聚焦：① 真实跑通 ② API 穷举测试 ③ library bug 修复 ④ 输出即用代码。所有命令可直接复制运行。</p>
 </blockquote>
-<h1 id="一句话定位">🎯 一句话定位</h1>
-<blockquote>
-<p><strong>myforestplot = Python 版的 R <code>forestplot</code> +
-<code>forestmodel</code></strong>，专为 statsmodels / scikit-survival
-输出设计，支持 Meta-analysis、Logistic 回归、Cox
-回归的森林图自动化绘制。</p>
+<h1 id="🎯-一句话定位"><a href="#🎯-一句话定位" class="headerlink" title="🎯 一句话定位"></a>🎯 一句话定位</h1><blockquote>
+<p><strong>myforestplot &#x3D; Python 版的 R <code>forestplot</code> + <code>forestmodel</code></strong>，专为 statsmodels &#x2F; scikit-survival 输出设计，支持 Meta-analysis、Logistic 回归、Cox 回归的森林图自动化绘制。</p>
 </blockquote>
-<hr />
-<h2 id="工具是什么">📖 1. 工具是什么</h2>
-<p><strong>myforestplot</strong> 是 toshiakiasakura 在 PyPI
-发布的小众库（v0.2.3，2022-09），专为生物医学论文的森林图设计。</p>
+<hr>
+<h2 id="📖-1-工具是什么"><a href="#📖-1-工具是什么" class="headerlink" title="📖 1. 工具是什么"></a>📖 1. 工具是什么</h2><p><strong>myforestplot</strong> 是 toshiakiasakura 在 PyPI 发布的小众库（v0.2.3，2022-09），专为生物医学论文的森林图设计。</p>
 <table>
 <thead>
 <tr>
@@ -416,15 +408,14 @@
 <th>myforestplot</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>安装</td>
 <td>复杂（依赖 CRAN）</td>
 <td><code>pip install myforestplot</code></td>
 </tr>
 <tr>
 <td>数据来源</td>
-<td>手动 OR/CI</td>
+<td>手动 OR&#x2F;CI</td>
 <td>statsmodels 自动提取</td>
 </tr>
 <tr>
@@ -440,22 +431,22 @@
 <tr>
 <td>发表质量</td>
 <td>高</td>
-<td>高（颜色/字体可全控）</td>
+<td>高（颜色&#x2F;字体可全控）</td>
 </tr>
-</tbody>
-</table>
-<p><strong>何时用它</strong>： - ✅ 写 Meta-analysis / 孟德尔随机化 /
-多因素 Logistic / Cox 论文 - ✅ 想从 statsmodels
-直接输出森林图（不用手算 OR/CI） - ✅ 需要中文友好的 matplotlib
-森林图</p>
-<p><strong>何时不用</strong>： - ❌ R 用户（用 <code>forestplot</code>
-或 <code>forestmodel</code> 更熟） - ❌ 想要交互式 HTML（用
-<code>forestly</code> 或 <code>JSforest</code>）</p>
-<hr />
-<h2 id="环境准备apple-silicon-专属">📖 2. 环境准备（Apple Silicon
-专属）</h2>
-<h3 id="依赖清单">2.1 依赖清单</h3>
-<table>
+</tbody></table>
+<p><strong>何时用它</strong>：</p>
+<ul>
+<li>✅ 写 Meta-analysis &#x2F; 孟德尔随机化 &#x2F; 多因素 Logistic &#x2F; Cox 论文</li>
+<li>✅ 想从 statsmodels 直接输出森林图（不用手算 OR&#x2F;CI）</li>
+<li>✅ 需要中文友好的 matplotlib 森林图</li>
+</ul>
+<p><strong>何时不用</strong>：</p>
+<ul>
+<li>❌ R 用户（用 <code>forestplot</code> 或 <code>forestmodel</code> 更熟）</li>
+<li>❌ 想要交互式 HTML（用 <code>forestly</code> 或 <code>JSforest</code>）</li>
+</ul>
+<hr>
+<h2 id="📖-2-环境准备（Apple-Silicon-专属）"><a href="#📖-2-环境准备（Apple-Silicon-专属）" class="headerlink" title="📖 2. 环境准备（Apple Silicon 专属）"></a>📖 2. 环境准备（Apple Silicon 专属）</h2><h3 id="2-1-依赖清单"><a href="#2-1-依赖清单" class="headerlink" title="2.1 依赖清单"></a>2.1 依赖清单</h3><table>
 <thead>
 <tr>
 <th>包</th>
@@ -463,8 +454,7 @@
 <th>说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>Python</td>
 <td>≥ 3.9</td>
 <td>推荐 3.10（scLLM 系列已验证）</td>
@@ -487,24 +477,21 @@
 <tr>
 <td>statsmodels</td>
 <td>≥ 0.13</td>
-<td>Logistic / Cox 拟合</td>
+<td>Logistic &#x2F; Cox 拟合</td>
 </tr>
 <tr>
 <td>jupyter</td>
 <td>(可选)</td>
 <td>跑 notebook demo</td>
 </tr>
-</tbody>
-</table>
-<h3 id="一键安装conda">2.2 一键安装（conda）</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 推荐：复用已有 environment（我用了 geneformer 环境）</span><br>conda activate your_env<br><br><span class="hljs-comment"># 装 myforestplot（pip 装不了就源码装）</span><br>pip install -e /path/to/myforestplot-main<br><span class="hljs-comment"># 或者</span><br>pip install myforestplot  <span class="hljs-comment"># 从 PyPI（但版本可能落后）</span><br></code></pre></td></tr></table></figure>
-<h3 id="验证安装">2.3 验证安装</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> myforestplot <span class="hljs-keyword">as</span> mfp<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Version: <span class="hljs-subst">&#123;mfp.__version__&#125;</span>&quot;</span>)<br><span class="hljs-comment"># Version: 0.2.3</span><br><br><span class="hljs-comment"># 检查公开 API</span><br><span class="hljs-built_in">print</span>([x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">dir</span>(mfp) <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> x.startswith(<span class="hljs-string">&quot;_&quot;</span>)])<br><span class="hljs-comment"># [&#x27;ForestPlot&#x27;, &#x27;SimpleForestPlot&#x27;, &#x27;add_pretty_risk_column&#x27;,</span><br><span class="hljs-comment">#  &#x27;count_category_frequency&#x27;, &#x27;sort_category_item&#x27;,</span><br><span class="hljs-comment">#  &#x27;statsmodels_fitting_result_dataframe&#x27;,</span><br><span class="hljs-comment">#  &#x27;statsmodels_pretty_result_dataframe&#x27;]</span><br></code></pre></td></tr></table></figure>
-<hr />
-<h2 id="完整-api-清单1314-通过">📖 3. 完整 API 清单（13/14 通过）</h2>
-<p>下面是我对每个公开 API 的实测结果。</p>
-<h3 id="总体测试结果">3.1 总体测试结果</h3>
-<table>
+</tbody></table>
+<h3 id="2-2-一键安装（conda）"><a href="#2-2-一键安装（conda）" class="headerlink" title="2.2 一键安装（conda）"></a>2.2 一键安装（conda）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 推荐：复用已有 environment（我用了 geneformer 环境）</span><br>conda activate your_env<br><br><span class="hljs-comment"># 装 myforestplot（pip 装不了就源码装）</span><br>pip install -e /path/to/myforestplot-main<br><span class="hljs-comment"># 或者</span><br>pip install myforestplot  <span class="hljs-comment"># 从 PyPI（但版本可能落后）</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="2-3-验证安装"><a href="#2-3-验证安装" class="headerlink" title="2.3 验证安装"></a>2.3 验证安装</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> myforestplot <span class="hljs-keyword">as</span> mfp<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Version: <span class="hljs-subst">&#123;mfp.__version__&#125;</span>&quot;</span>)<br><span class="hljs-comment"># Version: 0.2.3</span><br><br><span class="hljs-comment"># 检查公开 API</span><br><span class="hljs-built_in">print</span>([x <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">dir</span>(mfp) <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> x.startswith(<span class="hljs-string">&quot;_&quot;</span>)])<br><span class="hljs-comment"># [&#x27;ForestPlot&#x27;, &#x27;SimpleForestPlot&#x27;, &#x27;add_pretty_risk_column&#x27;,</span><br><span class="hljs-comment">#  &#x27;count_category_frequency&#x27;, &#x27;sort_category_item&#x27;,</span><br><span class="hljs-comment">#  &#x27;statsmodels_fitting_result_dataframe&#x27;,</span><br><span class="hljs-comment">#  &#x27;statsmodels_pretty_result_dataframe&#x27;]</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📖-3-完整-API-清单（13-14-通过）"><a href="#📖-3-完整-API-清单（13-14-通过）" class="headerlink" title="📖 3. 完整 API 清单（13&#x2F;14 通过）"></a>📖 3. 完整 API 清单（13&#x2F;14 通过）</h2><p>下面是我对每个公开 API 的实测结果。</p>
+<h3 id="3-1-总体测试结果"><a href="#3-1-总体测试结果" class="headerlink" title="3.1 总体测试结果"></a>3.1 总体测试结果</h3><table>
 <thead>
 <tr>
 <th>#</th>
@@ -513,12 +500,11 @@
 <th>输出</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>1</td>
 <td><code>statsmodels_pretty_result_dataframe</code></td>
 <td>✅</td>
-<td>shape=(4,8)</td>
+<td>shape&#x3D;(4,8)</td>
 </tr>
 <tr>
 <td>2</td>
@@ -576,13 +562,13 @@
 </tr>
 <tr>
 <td>11</td>
-<td><code>errorbar_color</code> / <code>ref_color</code></td>
+<td><code>errorbar_color</code> &#x2F; <code>ref_color</code></td>
 <td>✅</td>
 <td>PNG</td>
 </tr>
 <tr>
 <td>12</td>
-<td>column index mode（lower=0 upper=1）</td>
+<td>column index mode（lower&#x3D;0 upper&#x3D;1）</td>
 <td>✅</td>
 <td>PNG</td>
 </tr>
@@ -598,15 +584,11 @@
 <td>❌</td>
 <td>library bug</td>
 </tr>
-</tbody>
-</table>
-<hr />
-<h2 id="完整-sop从数据到图">📖 4. 完整 SOP（从数据到图）</h2>
-<h3 id="完整代码30-行跑通">4.1 完整代码（30 行跑通）</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib<br>matplotlib.use(<span class="hljs-string">&quot;Agg&quot;</span>)  <span class="hljs-comment"># 无显示器环境必需</span><br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> statsmodels.formula.api <span class="hljs-keyword">as</span> smf<br><span class="hljs-keyword">import</span> myforestplot <span class="hljs-keyword">as</span> mfp<br><br><span class="hljs-comment"># ============ Step 1: 准备数据 ============</span><br>df = pd.read_csv(<span class="hljs-string">&quot;your_data.csv&quot;</span>)<br><span class="hljs-comment"># 必须含列：因变量 + 自变量（连续/分类）</span><br><br><span class="hljs-comment"># ============ Step 2: 拟合回归 ============</span><br>res = smf.logit(<span class="hljs-string">&quot;y ~ x1 + x2 + x3&quot;</span>, data=df).fit()<br><br><span class="hljs-comment"># ============ Step 3: 自动提取 OR/CI ============</span><br>pretty_df = mfp.statsmodels_pretty_result_dataframe(<br>    df, res,<br>    order=[<span class="hljs-string">&quot;x1&quot;</span>, <span class="hljs-string">&quot;x2&quot;</span>, <span class="hljs-string">&quot;x3&quot;</span>],        <span class="hljs-comment"># 自变量顺序</span><br>    cont_cols=[<span class="hljs-string">&quot;x1&quot;</span>],               <span class="hljs-comment"># 连续变量（保持数值）</span><br>    item_order=&#123;<span class="hljs-string">&quot;x2&quot;</span>: [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>], <span class="hljs-string">&quot;x3&quot;</span>: [<span class="hljs-string">&quot;yes&quot;</span>, <span class="hljs-string">&quot;no&quot;</span>]&#125;,  <span class="hljs-comment"># 分类变量顺序</span><br>    fml=<span class="hljs-string">&quot;.3f&quot;</span><br>)<br><span class="hljs-comment"># ⚠️ bug 修复: nobs 列需手动补</span><br>pretty_df[<span class="hljs-string">&quot;nobs&quot;</span>] = pretty_df[<span class="hljs-string">&quot;nobs&quot;</span>].fillna(df.shape[<span class="hljs-number">0</span>]).astype(<span class="hljs-built_in">int</span>)<br><br><span class="hljs-comment"># ============ Step 4: 画森林图 ============</span><br>plt.rcParams[<span class="hljs-string">&quot;font.size&quot;</span>] = <span class="hljs-number">8</span><br>fp = mfp.SimpleForestPlot(ratio=(<span class="hljs-number">8</span>, <span class="hljs-number">3</span>), dpi=<span class="hljs-number">150</span>, figsize=(<span class="hljs-number">7</span>, <span class="hljs-number">3</span>), df=pretty_df)<br>fp.errorbar(errorbar_kwds=&#123;&#125;)   <span class="hljs-comment"># ⚠️ bug: 必须是 dict 不能是 None</span><br>fp.ax2.set_xlim([<span class="hljs-number">0</span>, <span class="hljs-number">1.5</span>])<br>fp.ax2.set_xlabel(<span class="hljs-string">&quot;OR&quot;</span>)<br>fp.ax2.axvline(x=<span class="hljs-number">1</span>, ymin=<span class="hljs-number">0</span>, ymax=<span class="hljs-number">1.0</span>, color=<span class="hljs-string">&quot;black&quot;</span>, alpha=<span class="hljs-number">0.5</span>)  <span class="hljs-comment"># 参考线</span><br><br><span class="hljs-comment"># ============ Step 5: 加文字标注 ============</span><br>fp.ax1.set_xlim([<span class="hljs-number">0.15</span>, <span class="hljs-number">1</span>])<br>fp.embed_strings(<span class="hljs-string">&quot;category&quot;</span>, <span class="hljs-number">0.1</span>, header=<span class="hljs-string">&quot;Category&quot;</span>, duplicate_hide=<span class="hljs-literal">True</span>,<br>                 text_kwds=<span class="hljs-built_in">dict</span>(fontweight=<span class="hljs-string">&quot;bold&quot;</span>),<br>                 header_kwds=<span class="hljs-built_in">dict</span>(fontweight=<span class="hljs-string">&quot;bold&quot;</span>))<br>fp.embed_strings(<span class="hljs-string">&quot;item&quot;</span>, <span class="hljs-number">0.36</span>, header=<span class="hljs-string">&quot;&quot;</span>, replace=&#123;<span class="hljs-string">&quot;x1&quot;</span>: <span class="hljs-string">&quot;&quot;</span>&#125;)<br>fp.embed_strings(<span class="hljs-string">&quot;risk_pretty&quot;</span>, <span class="hljs-number">0.6</span>, header=<span class="hljs-string">&quot;OR (95% CI)&quot;</span>, replace=&#123;<span class="hljs-string">&quot;(Intercept)&quot;</span>: <span class="hljs-string">&quot;&quot;</span>&#125;)<br>fp.embed_strings(<span class="hljs-string">&quot;pvalues&quot;</span>, <span class="hljs-number">0.9</span>, header=<span class="hljs-string">&quot;p-value&quot;</span>)   <span class="hljs-comment"># ⚠️ 列名是 pvalues 不是 p-value</span><br><br><span class="hljs-comment"># ============ Step 6: 保存 ============</span><br>fp.fig.savefig(<span class="hljs-string">&quot;forest_plot.png&quot;</span>, dpi=<span class="hljs-number">300</span>, bbox_inches=<span class="hljs-string">&quot;tight&quot;</span>)<br></code></pre></td></tr></table></figure>
-<h3 id="输出示意4-种典型风格">4.2 输出示意（4 种典型风格）</h3>
-<table>
+</tbody></table>
+<hr>
+<h2 id="📖-4-完整-SOP（从数据到图）"><a href="#📖-4-完整-SOP（从数据到图）" class="headerlink" title="📖 4. 完整 SOP（从数据到图）"></a>📖 4. 完整 SOP（从数据到图）</h2><h3 id="4-1-完整代码（30-行跑通）"><a href="#4-1-完整代码（30-行跑通）" class="headerlink" title="4.1 完整代码（30 行跑通）"></a>4.1 完整代码（30 行跑通）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib<br>matplotlib.use(<span class="hljs-string">&quot;Agg&quot;</span>)  <span class="hljs-comment"># 无显示器环境必需</span><br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> statsmodels.formula.api <span class="hljs-keyword">as</span> smf<br><span class="hljs-keyword">import</span> myforestplot <span class="hljs-keyword">as</span> mfp<br><br><span class="hljs-comment"># ============ Step 1: 准备数据 ============</span><br>df = pd.read_csv(<span class="hljs-string">&quot;your_data.csv&quot;</span>)<br><span class="hljs-comment"># 必须含列：因变量 + 自变量（连续/分类）</span><br><br><span class="hljs-comment"># ============ Step 2: 拟合回归 ============</span><br>res = smf.logit(<span class="hljs-string">&quot;y ~ x1 + x2 + x3&quot;</span>, data=df).fit()<br><br><span class="hljs-comment"># ============ Step 3: 自动提取 OR/CI ============</span><br>pretty_df = mfp.statsmodels_pretty_result_dataframe(<br>    df, res,<br>    order=[<span class="hljs-string">&quot;x1&quot;</span>, <span class="hljs-string">&quot;x2&quot;</span>, <span class="hljs-string">&quot;x3&quot;</span>],        <span class="hljs-comment"># 自变量顺序</span><br>    cont_cols=[<span class="hljs-string">&quot;x1&quot;</span>],               <span class="hljs-comment"># 连续变量（保持数值）</span><br>    item_order=&#123;<span class="hljs-string">&quot;x2&quot;</span>: [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>], <span class="hljs-string">&quot;x3&quot;</span>: [<span class="hljs-string">&quot;yes&quot;</span>, <span class="hljs-string">&quot;no&quot;</span>]&#125;,  <span class="hljs-comment"># 分类变量顺序</span><br>    fml=<span class="hljs-string">&quot;.3f&quot;</span><br>)<br><span class="hljs-comment"># ⚠️ bug 修复: nobs 列需手动补</span><br>pretty_df[<span class="hljs-string">&quot;nobs&quot;</span>] = pretty_df[<span class="hljs-string">&quot;nobs&quot;</span>].fillna(df.shape[<span class="hljs-number">0</span>]).astype(<span class="hljs-built_in">int</span>)<br><br><span class="hljs-comment"># ============ Step 4: 画森林图 ============</span><br>plt.rcParams[<span class="hljs-string">&quot;font.size&quot;</span>] = <span class="hljs-number">8</span><br>fp = mfp.SimpleForestPlot(ratio=(<span class="hljs-number">8</span>, <span class="hljs-number">3</span>), dpi=<span class="hljs-number">150</span>, figsize=(<span class="hljs-number">7</span>, <span class="hljs-number">3</span>), df=pretty_df)<br>fp.errorbar(errorbar_kwds=&#123;&#125;)   <span class="hljs-comment"># ⚠️ bug: 必须是 dict 不能是 None</span><br>fp.ax2.set_xlim([<span class="hljs-number">0</span>, <span class="hljs-number">1.5</span>])<br>fp.ax2.set_xlabel(<span class="hljs-string">&quot;OR&quot;</span>)<br>fp.ax2.axvline(x=<span class="hljs-number">1</span>, ymin=<span class="hljs-number">0</span>, ymax=<span class="hljs-number">1.0</span>, color=<span class="hljs-string">&quot;black&quot;</span>, alpha=<span class="hljs-number">0.5</span>)  <span class="hljs-comment"># 参考线</span><br><br><span class="hljs-comment"># ============ Step 5: 加文字标注 ============</span><br>fp.ax1.set_xlim([<span class="hljs-number">0.15</span>, <span class="hljs-number">1</span>])<br>fp.embed_strings(<span class="hljs-string">&quot;category&quot;</span>, <span class="hljs-number">0.1</span>, header=<span class="hljs-string">&quot;Category&quot;</span>, duplicate_hide=<span class="hljs-literal">True</span>,<br>                 text_kwds=<span class="hljs-built_in">dict</span>(fontweight=<span class="hljs-string">&quot;bold&quot;</span>),<br>                 header_kwds=<span class="hljs-built_in">dict</span>(fontweight=<span class="hljs-string">&quot;bold&quot;</span>))<br>fp.embed_strings(<span class="hljs-string">&quot;item&quot;</span>, <span class="hljs-number">0.36</span>, header=<span class="hljs-string">&quot;&quot;</span>, replace=&#123;<span class="hljs-string">&quot;x1&quot;</span>: <span class="hljs-string">&quot;&quot;</span>&#125;)<br>fp.embed_strings(<span class="hljs-string">&quot;risk_pretty&quot;</span>, <span class="hljs-number">0.6</span>, header=<span class="hljs-string">&quot;OR (95% CI)&quot;</span>, replace=&#123;<span class="hljs-string">&quot;(Intercept)&quot;</span>: <span class="hljs-string">&quot;&quot;</span>&#125;)<br>fp.embed_strings(<span class="hljs-string">&quot;pvalues&quot;</span>, <span class="hljs-number">0.9</span>, header=<span class="hljs-string">&quot;p-value&quot;</span>)   <span class="hljs-comment"># ⚠️ 列名是 pvalues 不是 p-value</span><br><br><span class="hljs-comment"># ============ Step 6: 保存 ============</span><br>fp.fig.savefig(<span class="hljs-string">&quot;forest_plot.png&quot;</span>, dpi=<span class="hljs-number">300</span>, bbox_inches=<span class="hljs-string">&quot;tight&quot;</span>)<br></code></pre></td></tr></table></figure>
 
+<h3 id="4-2-输出示意（4-种典型风格）"><a href="#4-2-输出示意（4-种典型风格）" class="headerlink" title="4.2 输出示意（4 种典型风格）"></a>4.2 输出示意（4 种典型风格）</h3><table>
 <thead>
 <tr>
 <th>类型</th>
@@ -614,10 +596,9 @@
 <th>代码</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>基础 2 轴</strong></td>
-<td>Logistic / Cox 简单展示</td>
+<td>Logistic &#x2F; Cox 简单展示</td>
 <td><code>SimpleForestPlot(ratio=(8,3))</code></td>
 </tr>
 <tr>
@@ -627,64 +608,50 @@
 </tr>
 <tr>
 <td><strong>对数尺度</strong></td>
-<td>HR/RR 大范围数据</td>
-<td><code>errorbar(log_scale=True)</code> +
-<code>set_xscale("log")</code></td>
+<td>HR&#x2F;RR 大范围数据</td>
+<td><code>errorbar(log_scale=True)</code> + <code>set_xscale(&quot;log&quot;)</code></td>
 </tr>
 <tr>
 <td><strong>分层着色</strong></td>
 <td>强调不同类别</td>
 <td><code>errorbar_color=</code> <code>ref_color=</code></td>
 </tr>
-</tbody>
-</table>
-<hr />
-<h2 id="我踩的-3-个坑重要">📖 5. 我踩的 3 个坑（重要！）</h2>
-<h3 id="列名错误p-value-vs-pvalues">5.1 ❌
-列名错误：<code>'p-value'</code> vs <code>'pvalues'</code></h3>
-<p><strong>症状</strong>：<code>KeyError: 'p-value'</code></p>
-<p><strong>原因</strong>：库实际输出列名是
-<code>pvalues</code>（无连字符），不是 <code>p-value</code>。</p>
-<p><strong>修复</strong>： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># ❌ 错</span><br>fp.embed_strings(<span class="hljs-string">&quot;p-value&quot;</span>, <span class="hljs-number">0.9</span>, header=<span class="hljs-string">&quot;p-value&quot;</span>)<br><br><span class="hljs-comment"># ✅ 对</span><br>fp.embed_strings(<span class="hljs-string">&quot;pvalues&quot;</span>, <span class="hljs-number">0.9</span>, header=<span class="hljs-string">&quot;p-value&quot;</span>)<br></code></pre></td></tr></table></figure></p>
-<h3 id="api-签名错误count_category_frequency-参数名">5.2 ❌ API
-签名错误：<code>count_category_frequency</code> 参数名</h3>
-<p><strong>症状</strong>：<code>TypeError: count_category_frequency() missing 1 required positional argument: 'categorical_cols'</code></p>
-<p><strong>修复</strong>： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># ❌ 错</span><br>freq = mfp.count_category_frequency(test_df, categorical_cols=[<span class="hljs-string">&quot;category&quot;</span>])<br><br><span class="hljs-comment"># ✅ 对（注意参数名是 categorical_cols）</span><br>freq = mfp.count_category_frequency(test_df, categorical_cols=[<span class="hljs-string">&quot;category&quot;</span>, <span class="hljs-string">&quot;item&quot;</span>])<br></code></pre></td></tr></table></figure></p>
-<h3 id="errorbar_kwdsnone-errorbar_color-组合爆炸">5.3 ❌
-<code>errorbar_kwds=None</code> + <code>errorbar_color</code>
-组合爆炸</h3>
-<p><strong>症状</strong>：<code>TypeError: 'NoneType' object does not support item assignment</code></p>
-<p><strong>原因</strong>：<code>vis_utils.py:75-77</code> 直接对
-<code>errorbar_kwds["ecolor"]</code> 赋值，假设
-<code>errorbar_kwds</code> 是 dict。</p>
-<p><strong>修复</strong>： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># ❌ 错（库 bug）</span><br>fp.errorbar(errorbar_kwds=<span class="hljs-literal">None</span>, errorbar_color=<span class="hljs-string">&quot;crimson&quot;</span>)<br><br><span class="hljs-comment"># ✅ 对（传空 dict 避开）</span><br>fp.errorbar(errorbar_kwds=&#123;&#125;, ref_kwds=&#123;&#125;, <br>            errorbar_color=<span class="hljs-string">&quot;crimson&quot;</span>, ref_color=<span class="hljs-string">&quot;navy&quot;</span>)<br></code></pre></td></tr></table></figure></p>
+</tbody></table>
+<hr>
+<h2 id="📖-5-我踩的-3-个坑（重要！）"><a href="#📖-5-我踩的-3-个坑（重要！）" class="headerlink" title="📖 5. 我踩的 3 个坑（重要！）"></a>📖 5. 我踩的 3 个坑（重要！）</h2><h3 id="5-1-❌-列名错误：-p-value-vs-pvalues"><a href="#5-1-❌-列名错误：-p-value-vs-pvalues" class="headerlink" title="5.1 ❌ 列名错误：&#39;p-value&#39; vs &#39;pvalues&#39;"></a>5.1 ❌ 列名错误：<code>&#39;p-value&#39;</code> vs <code>&#39;pvalues&#39;</code></h3><p><strong>症状</strong>：<code>KeyError: &#39;p-value&#39;</code></p>
+<p><strong>原因</strong>：库实际输出列名是 <code>pvalues</code>（无连字符），不是 <code>p-value</code>。</p>
+<p><strong>修复</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># ❌ 错</span><br>fp.embed_strings(<span class="hljs-string">&quot;p-value&quot;</span>, <span class="hljs-number">0.9</span>, header=<span class="hljs-string">&quot;p-value&quot;</span>)<br><br><span class="hljs-comment"># ✅ 对</span><br>fp.embed_strings(<span class="hljs-string">&quot;pvalues&quot;</span>, <span class="hljs-number">0.9</span>, header=<span class="hljs-string">&quot;p-value&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-2-❌-API-签名错误：count-category-frequency-参数名"><a href="#5-2-❌-API-签名错误：count-category-frequency-参数名" class="headerlink" title="5.2 ❌ API 签名错误：count_category_frequency 参数名"></a>5.2 ❌ API 签名错误：<code>count_category_frequency</code> 参数名</h3><p><strong>症状</strong>：<code>TypeError: count_category_frequency() missing 1 required positional argument: &#39;categorical_cols&#39;</code></p>
+<p><strong>修复</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># ❌ 错</span><br>freq = mfp.count_category_frequency(test_df, categorical_cols=[<span class="hljs-string">&quot;category&quot;</span>])<br><br><span class="hljs-comment"># ✅ 对（注意参数名是 categorical_cols）</span><br>freq = mfp.count_category_frequency(test_df, categorical_cols=[<span class="hljs-string">&quot;category&quot;</span>, <span class="hljs-string">&quot;item&quot;</span>])<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-3-❌-errorbar-kwds-None-errorbar-color-组合爆炸"><a href="#5-3-❌-errorbar-kwds-None-errorbar-color-组合爆炸" class="headerlink" title="5.3 ❌ errorbar_kwds=None + errorbar_color 组合爆炸"></a>5.3 ❌ <code>errorbar_kwds=None</code> + <code>errorbar_color</code> 组合爆炸</h3><p><strong>症状</strong>：<code>TypeError: &#39;NoneType&#39; object does not support item assignment</code></p>
+<p><strong>原因</strong>：<code>vis_utils.py:75-77</code> 直接对 <code>errorbar_kwds[&quot;ecolor&quot;]</code> 赋值，假设 <code>errorbar_kwds</code> 是 dict。</p>
+<p><strong>修复</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># ❌ 错（库 bug）</span><br>fp.errorbar(errorbar_kwds=<span class="hljs-literal">None</span>, errorbar_color=<span class="hljs-string">&quot;crimson&quot;</span>)<br><br><span class="hljs-comment"># ✅ 对（传空 dict 避开）</span><br>fp.errorbar(errorbar_kwds=&#123;&#125;, ref_kwds=&#123;&#125;, <br>            errorbar_color=<span class="hljs-string">&quot;crimson&quot;</span>, ref_color=<span class="hljs-string">&quot;navy&quot;</span>)<br></code></pre></td></tr></table></figure>
+
 <p><strong>或者</strong>：用 monkey patch 直接修库的 bug：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 一次性 patch，永远生效</span><br><span class="hljs-keyword">import</span> myforestplot.vis_utils <span class="hljs-keyword">as</span> vu<br>orig_errorbar = vu.errorbar_forestplot<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">patched</span>(<span class="hljs-params">*args, errorbar_kwds=<span class="hljs-literal">None</span>, ref_kwds=<span class="hljs-literal">None</span>, errorbar_color=<span class="hljs-literal">None</span>, ref_color=<span class="hljs-literal">None</span>, **kw</span>):<br>    errorbar_kwds = errorbar_kwds <span class="hljs-keyword">or</span> &#123;&#125;<br>    ref_kwds = ref_kwds <span class="hljs-keyword">or</span> &#123;&#125;<br>    <span class="hljs-keyword">return</span> orig_errorbar(*args, errorbar_kwds=errorbar_kwds, ref_kwds=ref_kwds,<br>                        errorbar_color=errorbar_color, ref_color=ref_color, **kw)<br>vu.errorbar_forestplot = patched<br></code></pre></td></tr></table></figure>
-<hr />
-<h2 id="个核心绘图技巧">📖 6. 3 个核心绘图技巧</h2>
-<h3 id="参考线or1-的零效应线">6.1 参考线（OR=1 的零效应线）</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">fp.ax2.axvline(x=<span class="hljs-number">1</span>, ymin=<span class="hljs-number">0</span>, ymax=<span class="hljs-number">1.0</span>, color=<span class="hljs-string">&quot;black&quot;</span>, alpha=<span class="hljs-number">0.5</span>)<br></code></pre></td></tr></table></figure>
-<h3 id="亚组水平分隔线多分类变量分组">6.2
-亚组水平分隔线（多分类变量分组）</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">fp.draw_horizontal_line(<span class="hljs-number">1</span>, -<span class="hljs-number">0.5</span>)                       <span class="hljs-comment"># 实线</span><br>fp.draw_horizontal_line(<span class="hljs-number">1</span>, -<span class="hljs-number">3.5</span>, linestyle=<span class="hljs-string">&quot;--&quot;</span>, color=<span class="hljs-string">&quot;red&quot;</span>)  <span class="hljs-comment"># 虚线</span><br></code></pre></td></tr></table></figure>
-<h3 id="加-outer-marker表示样本量大小">6.3 加 outer
-marker（表示样本量大小）</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">fp.draw_outer_marker(<span class="hljs-number">2</span>, lower=<span class="hljs-number">0</span>, upper=<span class="hljs-number">1</span>, lower_marker=<span class="hljs-number">4</span>, upper_marker=<span class="hljs-number">5</span>, <br>                    scale=<span class="hljs-number">0.05</span>)  <span class="hljs-comment"># ← 库 bug：用 *scatter**kwds 传 marker 报错</span><br></code></pre></td></tr></table></figure>
-<p>⚠️ draw_outer_marker 有 bug — 暂用替代方案：用
-<code>errorbar_kwds={"s": ...}</code> 在 errorbar 阶段直接调 scatter
-的大小。</p>
-<hr />
-<h2 id="自定义数据替换示例3-步">📖 7. 自定义数据替换示例（3 步）</h2>
-<h3 id="替换-statsmodels-模型">7.1 替换 statsmodels 模型</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># ❌ demo: logistic</span><br>res = smf.logit(<span class="hljs-string">&quot;survived ~ sex + age&quot;</span>, data=titanic).fit()<br><br><span class="hljs-comment"># ✅ 自定义：你的数据</span><br>res = smf.logit(<span class="hljs-string">&quot;disease ~ bmi + age + smoking + family_history&quot;</span>, data=your_df).fit()<br></code></pre></td></tr></table></figure>
-<h3 id="替换分类变量顺序">7.2 替换分类变量顺序</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># ❌ demo: 默认</span><br>item_order=&#123;<span class="hljs-string">&quot;embark_town&quot;</span>: [<span class="hljs-string">&#x27;Southampton&#x27;</span>, <span class="hljs-string">&#x27;Cherbourg&#x27;</span>, <span class="hljs-string">&#x27;Queenstown&#x27;</span>]&#125;<br><br><span class="hljs-comment"># ✅ 自定义：按字母 / 临床意义</span><br>item_order=&#123;<span class="hljs-string">&quot;smoking&quot;</span>: [<span class="hljs-string">&quot;never&quot;</span>, <span class="hljs-string">&quot;former&quot;</span>, <span class="hljs-string">&quot;current&quot;</span>]&#125;  <span class="hljs-comment"># 临床习惯顺序</span><br>item_order=&#123;<span class="hljs-string">&quot;stage&quot;</span>: [<span class="hljs-string">&quot;I&quot;</span>, <span class="hljs-string">&quot;II&quot;</span>, <span class="hljs-string">&quot;III&quot;</span>, <span class="hljs-string">&quot;IV&quot;</span>]&#125;  <span class="hljs-comment"># 按严重度</span><br></code></pre></td></tr></table></figure>
-<h3 id="自定义-output-格式保留小数位数">7.3 自定义 output
-格式（保留小数位数）</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># fml 参数控制 OR 显示精度</span><br>pretty_df = mfp.statsmodels_pretty_result_dataframe(<br>    df, res, fml=<span class="hljs-string">&quot;.2f&quot;</span>  <span class="hljs-comment"># 显示 2 位小数</span><br>    <span class="hljs-comment"># 或 fml=&quot;.4e&quot;  # 科学计数法</span><br>)<br></code></pre></td></tr></table></figure>
-<hr />
-<h2 id="输出物8-张测试图">📖 8. 输出物（8 张测试图）</h2>
-<p>执行 <code>test_all_v2.py</code> 会生成：</p>
+
+<hr>
+<h2 id="📖-6-3-个核心绘图技巧"><a href="#📖-6-3-个核心绘图技巧" class="headerlink" title="📖 6. 3 个核心绘图技巧"></a>📖 6. 3 个核心绘图技巧</h2><h3 id="6-1-参考线（OR-1-的零效应线）"><a href="#6-1-参考线（OR-1-的零效应线）" class="headerlink" title="6.1 参考线（OR&#x3D;1 的零效应线）"></a>6.1 参考线（OR&#x3D;1 的零效应线）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">fp.ax2.axvline(x=<span class="hljs-number">1</span>, ymin=<span class="hljs-number">0</span>, ymax=<span class="hljs-number">1.0</span>, color=<span class="hljs-string">&quot;black&quot;</span>, alpha=<span class="hljs-number">0.5</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-2-亚组水平分隔线（多分类变量分组）"><a href="#6-2-亚组水平分隔线（多分类变量分组）" class="headerlink" title="6.2 亚组水平分隔线（多分类变量分组）"></a>6.2 亚组水平分隔线（多分类变量分组）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">fp.draw_horizontal_line(<span class="hljs-number">1</span>, -<span class="hljs-number">0.5</span>)                       <span class="hljs-comment"># 实线</span><br>fp.draw_horizontal_line(<span class="hljs-number">1</span>, -<span class="hljs-number">3.5</span>, linestyle=<span class="hljs-string">&quot;--&quot;</span>, color=<span class="hljs-string">&quot;red&quot;</span>)  <span class="hljs-comment"># 虚线</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="6-3-加-outer-marker（表示样本量大小）"><a href="#6-3-加-outer-marker（表示样本量大小）" class="headerlink" title="6.3 加 outer marker（表示样本量大小）"></a>6.3 加 outer marker（表示样本量大小）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">fp.draw_outer_marker(<span class="hljs-number">2</span>, lower=<span class="hljs-number">0</span>, upper=<span class="hljs-number">1</span>, lower_marker=<span class="hljs-number">4</span>, upper_marker=<span class="hljs-number">5</span>, <br>                    scale=<span class="hljs-number">0.05</span>)  <span class="hljs-comment"># ← 库 bug：用 *scatter**kwds 传 marker 报错</span><br></code></pre></td></tr></table></figure>
+
+<p>⚠️ draw_outer_marker 有 bug — 暂用替代方案：用 <code>errorbar_kwds={&quot;s&quot;: ...}</code> 在 errorbar 阶段直接调 scatter 的大小。</p>
+<hr>
+<h2 id="📖-7-自定义数据替换示例（3-步）"><a href="#📖-7-自定义数据替换示例（3-步）" class="headerlink" title="📖 7. 自定义数据替换示例（3 步）"></a>📖 7. 自定义数据替换示例（3 步）</h2><h3 id="7-1-替换-statsmodels-模型"><a href="#7-1-替换-statsmodels-模型" class="headerlink" title="7.1 替换 statsmodels 模型"></a>7.1 替换 statsmodels 模型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># ❌ demo: logistic</span><br>res = smf.logit(<span class="hljs-string">&quot;survived ~ sex + age&quot;</span>, data=titanic).fit()<br><br><span class="hljs-comment"># ✅ 自定义：你的数据</span><br>res = smf.logit(<span class="hljs-string">&quot;disease ~ bmi + age + smoking + family_history&quot;</span>, data=your_df).fit()<br></code></pre></td></tr></table></figure>
+
+<h3 id="7-2-替换分类变量顺序"><a href="#7-2-替换分类变量顺序" class="headerlink" title="7.2 替换分类变量顺序"></a>7.2 替换分类变量顺序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># ❌ demo: 默认</span><br>item_order=&#123;<span class="hljs-string">&quot;embark_town&quot;</span>: [<span class="hljs-string">&#x27;Southampton&#x27;</span>, <span class="hljs-string">&#x27;Cherbourg&#x27;</span>, <span class="hljs-string">&#x27;Queenstown&#x27;</span>]&#125;<br><br><span class="hljs-comment"># ✅ 自定义：按字母 / 临床意义</span><br>item_order=&#123;<span class="hljs-string">&quot;smoking&quot;</span>: [<span class="hljs-string">&quot;never&quot;</span>, <span class="hljs-string">&quot;former&quot;</span>, <span class="hljs-string">&quot;current&quot;</span>]&#125;  <span class="hljs-comment"># 临床习惯顺序</span><br>item_order=&#123;<span class="hljs-string">&quot;stage&quot;</span>: [<span class="hljs-string">&quot;I&quot;</span>, <span class="hljs-string">&quot;II&quot;</span>, <span class="hljs-string">&quot;III&quot;</span>, <span class="hljs-string">&quot;IV&quot;</span>]&#125;  <span class="hljs-comment"># 按严重度</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="7-3-自定义-output-格式（保留小数位数）"><a href="#7-3-自定义-output-格式（保留小数位数）" class="headerlink" title="7.3 自定义 output 格式（保留小数位数）"></a>7.3 自定义 output 格式（保留小数位数）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># fml 参数控制 OR 显示精度</span><br>pretty_df = mfp.statsmodels_pretty_result_dataframe(<br>    df, res, fml=<span class="hljs-string">&quot;.2f&quot;</span>  <span class="hljs-comment"># 显示 2 位小数</span><br>    <span class="hljs-comment"># 或 fml=&quot;.4e&quot;  # 科学计数法</span><br>)<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📖-8-输出物（8-张测试图）"><a href="#📖-8-输出物（8-张测试图）" class="headerlink" title="📖 8. 输出物（8 张测试图）"></a>📖 8. 输出物（8 张测试图）</h2><p>执行 <code>test_all_v2.py</code> 会生成：</p>
 <table>
 <thead>
 <tr>
@@ -693,8 +660,7 @@ marker（表示样本量大小）</h3>
 <th>演示功能</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><code>01_simple_basic.png</code></td>
 <td>31 KB</td>
 <td>基础 2 轴森林图</td>
@@ -727,49 +693,39 @@ marker（表示样本量大小）</h3>
 <tr>
 <td><code>07_col_index.png</code></td>
 <td>23 KB</td>
-<td>列索引模式（lower=0 upper=1）</td>
+<td>列索引模式（lower&#x3D;0 upper&#x3D;1）</td>
 </tr>
 <tr>
 <td><code>08_var_separators.png</code></td>
 <td>17 KB</td>
 <td>变量分隔线</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>每张图都是 <strong>300 DPI 发表级</strong>，可直接用于论文。</p>
-<hr />
-<h2 id="完整测试代码">📖 9. 完整测试代码</h2>
-<p>完整的 14 个 API 测试脚本（340 行）： -
-<code>~/3_Toolbox/Bioinfo/forestplot/test_all_v2.py</code></p>
-<p>直接 <code>python test_all_v2.py</code>
-即可重跑，结果与本文完全一致。</p>
-<hr />
-<h2 id="总结3-句话讲清-myforestplot">📖 10. 总结：3 句话讲清
-myforestplot</h2>
-<ol type="1">
-<li><strong>核心价值</strong>：从 statsmodels 直接出森林图，省去手算
-OR/CI</li>
-<li><strong>最大坑</strong>：列名是 <code>pvalues</code>（不是
-<code>p-value</code>），参数名是 <code>categorical_cols</code> /
-<code>order</code> / <code>risk,lower,upper</code></li>
-<li><strong>最大 bug</strong>：<code>errorbar_kwds=None</code> +
-<code>errorbar_color</code> 组合会炸，必须传 <code>{}</code> 或 monkey
-patch</li>
-</ol>
-<hr />
-<h2 id="参考资源">📚 参考资源</h2>
+<hr>
+<h2 id="📖-9-完整测试代码"><a href="#📖-9-完整测试代码" class="headerlink" title="📖 9. 完整测试代码"></a>📖 9. 完整测试代码</h2><p>完整的 14 个 API 测试脚本（340 行）：</p>
 <ul>
-<li><strong>官方文档</strong>：https://toshiakiasakura.github.io/myforestplot/</li>
-<li><strong>PyPI</strong>：https://pypi.org/project/myforestplot/</li>
-<li><strong>GitHub</strong>：https://github.com/toshiakiasakura/myforestplot</li>
-<li><strong>测试数据</strong>：Titantic（来自 seaborn / 官方 demo）</li>
+<li><code>~/3_Toolbox/Bioinfo/forestplot/test_all_v2.py</code></li>
 </ul>
-<hr />
+<p>直接 <code>python test_all_v2.py</code> 即可重跑，结果与本文完全一致。</p>
+<hr>
+<h2 id="📖-10-总结：3-句话讲清-myforestplot"><a href="#📖-10-总结：3-句话讲清-myforestplot" class="headerlink" title="📖 10. 总结：3 句话讲清 myforestplot"></a>📖 10. 总结：3 句话讲清 myforestplot</h2><ol>
+<li><strong>核心价值</strong>：从 statsmodels 直接出森林图，省去手算 OR&#x2F;CI</li>
+<li><strong>最大坑</strong>：列名是 <code>pvalues</code>（不是 <code>p-value</code>），参数名是 <code>categorical_cols</code> &#x2F; <code>order</code> &#x2F; <code>risk,lower,upper</code></li>
+<li><strong>最大 bug</strong>：<code>errorbar_kwds=None</code> + <code>errorbar_color</code> 组合会炸，必须传 <code>{}</code> 或 monkey patch</li>
+</ol>
+<hr>
+<h2 id="📚-参考资源"><a href="#📚-参考资源" class="headerlink" title="📚 参考资源"></a>📚 参考资源</h2><ul>
+<li><strong>官方文档</strong>：<a target="_blank" rel="noopener" href="https://toshiakiasakura.github.io/myforestplot/">https://toshiakiasakura.github.io/myforestplot/</a></li>
+<li><strong>PyPI</strong>：<a target="_blank" rel="noopener" href="https://pypi.org/project/myforestplot/">https://pypi.org/project/myforestplot/</a></li>
+<li><strong>GitHub</strong>：<a target="_blank" rel="noopener" href="https://github.com/toshiakiasakura/myforestplot">https://github.com/toshiakiasakura/myforestplot</a></li>
+<li><strong>测试数据</strong>：Titantic（来自 seaborn &#x2F; 官方 demo）</li>
+</ul>
+<hr>
 <blockquote>
 <p><strong>作者</strong>: Sunny (scLLM 资深工程师)
-<strong>配套资源</strong>: 14 个 API 测试脚本 + 8 张示例图（GitHub
-zoebischuribe-cloud/Sunny-research） <strong>下篇预告</strong>:
-「forestmodel 全 API 实测」—— R 语言版的同类工具</p>
+<strong>配套资源</strong>: 14 个 API 测试脚本 + 8 张示例图（GitHub zoebischuribe-cloud&#x2F;Sunny-research）
+<strong>下篇预告</strong>: 「forestmodel 全 API 实测」—— R 语言版的同类工具</p>
 </blockquote>
 
                 
@@ -890,6 +846,12 @@ zoebischuribe-cloud/Sunny-research） <strong>下篇预告</strong>:
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2026/06/26/sunny-multi-platform-sop/" title="多平台自动化分发 SOP — 一键同步 6 大平台">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">多平台自动化分发 SOP — 一键同步 6 大平台</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

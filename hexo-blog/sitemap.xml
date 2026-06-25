@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhuer.github.io/2026/06/26/sunny-multi-platform-sop/</loc>
+    
+    <lastmod>2026-06-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://zhuer.github.io/2026/06/26/myforestplot-sop-2026/</loc>
     
     <lastmod>2026-06-25</lastmod>
@@ -140,6 +149,34 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://zhuer.github.io/tags/SOP/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhuer.github.io/tags/Sunny-research/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhuer.github.io/tags/%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%88%86%E5%8F%91/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhuer.github.io/tags/%E4%B8%AA%E4%BA%BAIP/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -179,6 +216,20 @@
   
   <url>
     <loc>https://zhuer.github.io/categories/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhuer.github.io/categories/Sunny-research/</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhuer.github.io/categories/Sunny-research/SOP%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2026-06-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

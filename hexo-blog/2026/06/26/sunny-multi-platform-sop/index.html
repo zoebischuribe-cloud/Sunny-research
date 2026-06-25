@@ -1,0 +1,1078 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Sunny (zhuer)">
+  <meta name="keywords" content="scRNA-seq, Geneformer, scGPT, single-cell, deep learning, bioinformatics">
+  
+    <meta name="description" content="写一篇 Hexo 文章，一键同步到公众号&#x2F;知乎&#x2F;CSDN&#x2F;掘金&#x2F;Twitter&#x2F;LinkedIn。配套 sunny-publish-pipeline 命令行工具。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多平台自动化分发 SOP — 一键同步 6 大平台">
+<meta property="og:url" content="https://zhuer.github.io/2026/06/26/sunny-multi-platform-sop/index.html">
+<meta property="og:site_name" content="Sunny的生物信息学笔记">
+<meta property="og:description" content="写一篇 Hexo 文章，一键同步到公众号&#x2F;知乎&#x2F;CSDN&#x2F;掘金&#x2F;Twitter&#x2F;LinkedIn。配套 sunny-publish-pipeline 命令行工具。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-26T06:30:00.000Z">
+<meta property="article:modified_time" content="2026-06-25T22:01:20.957Z">
+<meta property="article:author" content="Sunny (zhuer)">
+<meta property="article:tag" content="SOP">
+<meta property="article:tag" content="Sunny-research">
+<meta property="article:tag" content="个人IP">
+<meta property="article:tag" content="多平台分发">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>多平台自动化分发 SOP — 一键同步 6 大平台,Sunny的生物信息学笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhuer.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="Sunny的生物信息学笔记" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="多平台自动化分发 SOP — 一键同步 6 大平台"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-26 14:30" pubdate>
+          2026年6月26日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          55 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">多平台自动化分发 SOP — 一键同步 6 大平台</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="🚀-Sunny-research-多平台自动化分发-SOP"><a href="#🚀-Sunny-research-多平台自动化分发-SOP" class="headerlink" title="🚀 Sunny-research 多平台自动化分发 SOP"></a>🚀 Sunny-research 多平台自动化分发 SOP</h1><blockquote>
+<p><strong>Hermes</strong>: 本文是 Sunny 个人 IP 内容矩阵的<strong>标准化操作手册</strong>，配套 <code>sunny-publish-pipeline</code> 一键命令，实现从 Hexo 文章 → 6 平台分发的全自动化。一次配置，永久收益。</p>
+</blockquote>
+<hr>
+<h2 id="🎯-30-秒看懂"><a href="#🎯-30-秒看懂" class="headerlink" title="🎯 30 秒看懂"></a>🎯 30 秒看懂</h2><p><strong>你想做</strong>：写一篇 Hexo 博客，自动同步到公众号&#x2F;知乎&#x2F;CSDN&#x2F;掘金&#x2F;Twitter&#x2F;LinkedIn。</p>
+<p><strong>你需要做</strong>：写完文章后，敲一行命令。</p>
+<p><strong>实际效果</strong>：</p>
+<ul>
+<li>公众号、知乎、CSDN、掘金 → 各得到 1 个可粘贴的格式化文件</li>
+<li>Twitter → 1 个英文 thread</li>
+<li>LinkedIn → 1 个英文 post</li>
+<li>GitHub Pages → 文章已部署上线</li>
+<li>飞书 → 推送完成通知</li>
+</ul>
+<hr>
+<h2 id="📦-配套组件（一次性安装已完成）"><a href="#📦-配套组件（一次性安装已完成）" class="headerlink" title="📦 配套组件（一次性安装已完成）"></a>📦 配套组件（一次性安装已完成）</h2><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>路径</th>
+<th>状态</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>sunny-publish-pipeline</code></td>
+<td><code>~/3_Toolbox/bin/</code></td>
+<td>✅ 已装</td>
+<td><strong>一键分发入口</strong></td>
+</tr>
+<tr>
+<td><code>sunny_publish.py</code></td>
+<td><code>~/3_Toolbox/bin/</code></td>
+<td>✅ 已装</td>
+<td>6 平台格式转换核心</td>
+</tr>
+<tr>
+<td><code>sunny-publish</code></td>
+<td><code>~/3_Toolbox/bin/</code></td>
+<td>✅ 已装</td>
+<td>sunny-publish.py 的 bash 封装</td>
+</tr>
+<tr>
+<td><code>auto-distribute.yml</code></td>
+<td><code>hexo-blog/.github/workflows/</code></td>
+<td>✅ 已部署</td>
+<td>GH Actions 触发器</td>
+</tr>
+<tr>
+<td><code>auto_distribute.py</code></td>
+<td><code>.github/workflows/</code></td>
+<td>✅ 已部署</td>
+<td>GH Actions 执行脚本</td>
+</tr>
+<tr>
+<td><code>zoeb-push</code></td>
+<td><code>~/3_Toolbox/bin/</code></td>
+<td>✅ 已装</td>
+<td>GitHub token URL embed 推送</td>
+</tr>
+<tr>
+<td><code>feishu/webhook_url</code></td>
+<td><code>~/.config/api-keys/</code></td>
+<td>⏳ 可选</td>
+<td>飞书通知 webhook</td>
+</tr>
+<tr>
+<td><code>content-calendar.md</code></td>
+<td><code>~/2_Areas/Sunny-research/</code></td>
+<td>✅ 已建</td>
+<td>13 周发布日历</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🚀-日常使用（3-步）"><a href="#🚀-日常使用（3-步）" class="headerlink" title="🚀 日常使用（3 步）"></a>🚀 日常使用（3 步）</h2><h3 id="步骤-1-在-Hexo-写文章"><a href="#步骤-1-在-Hexo-写文章" class="headerlink" title="步骤 1: 在 Hexo 写文章"></a>步骤 1: 在 Hexo 写文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/2_Areas/Sunny-research/hexo-blog<br>hexo new <span class="hljs-string">&quot;我的新文章标题&quot;</span><br><span class="hljs-comment"># 编辑 source/_posts/我的新文章标题.md</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>frontmatter 必备字段</strong>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">我的新文章标题</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2026-06-26 14:00:00</span><br><span class="hljs-attr">tags:</span> [<span class="hljs-string">scLLM</span>, <span class="hljs-string">Geneformer</span>, <span class="hljs-string">SOP</span>]<br><span class="hljs-attr">description:</span> <span class="hljs-string">一句话简介（≤120</span> <span class="hljs-string">字，会被用作摘要）</span><br><span class="hljs-meta">---</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="步骤-2-一键分发"><a href="#步骤-2-一键分发" class="headerlink" title="步骤 2: 一键分发"></a>步骤 2: 一键分发</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 方式 A: 分发最新一篇</span><br>sunny-publish-pipeline<br><br><span class="hljs-comment"># 方式 B: 指定文章</span><br>sunny-publish-pipeline ~/2_Areas/Sunny-research/hexo-blog/source/_posts/我的新文章标题.md<br><br><span class="hljs-comment"># 方式 C: 只生成分发文件，不推送</span><br>sunny-publish-pipeline --no-push<br></code></pre></td></tr></table></figure>
+
+<h3 id="步骤-3-手动复制到平台后台（仅公众号需要）"><a href="#步骤-3-手动复制到平台后台（仅公众号需要）" class="headerlink" title="步骤 3: 手动复制到平台后台（仅公众号需要）"></a>步骤 3: 手动复制到平台后台（仅公众号需要）</h3><table>
+<thead>
+<tr>
+<th>平台</th>
+<th>操作</th>
+<th>时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>微信公众号</strong></td>
+<td>浏览器打开 <a target="_blank" rel="noopener" href="https://doocs.gitee.io/md/">https://doocs.gitee.io/md/</a> → 粘贴 <code>dist/*/zhihu.md</code> 内容 → 点「复制」→ mp.weixin.qq.com 粘贴</td>
+<td>2 min</td>
+</tr>
+<tr>
+<td><strong>知乎</strong></td>
+<td>打开 <code>dist/*/zhihu.md</code> → 全选复制 → zhuanlan.zhihu.com 粘贴</td>
+<td>1 min</td>
+</tr>
+<tr>
+<td><strong>CSDN</strong></td>
+<td>打开 <code>dist/*/csdn.md</code> → 全选复制 → editor.csdn.net 粘贴</td>
+<td>1 min</td>
+</tr>
+<tr>
+<td><strong>掘金</strong></td>
+<td>打开 <code>dist/*/juejin.md</code> → 全选复制 → juejin.cn&#x2F;editor 粘贴</td>
+<td>1 min</td>
+</tr>
+<tr>
+<td><strong>Twitter&#x2F;X</strong></td>
+<td>打开 <code>dist/*/twitter.txt</code> → 分条发布 thread</td>
+<td>2 min</td>
+</tr>
+<tr>
+<td><strong>LinkedIn</strong></td>
+<td>打开 <code>dist/*/linkedin.txt</code> → 发布</td>
+<td>30 s</td>
+</tr>
+</tbody></table>
+<p><strong>总耗时</strong>：8 - 10 分钟&#x2F;平台 × 6 平台 &#x3D; <strong>5 分钟总操作</strong></p>
+<blockquote>
+<p>⚠️ 微信公众号无法全自动（需要扫码登录 + cookies），必须手动。但用 <a target="_blank" rel="noopener" href="https://doocs.gitee.io/md/">https://doocs.gitee.io/md/</a> 这类工具能 90 秒搞定图文上传。</p>
+</blockquote>
+<hr>
+<h2 id="🔁-自动化链路详解"><a href="#🔁-自动化链路详解" class="headerlink" title="🔁 自动化链路详解"></a>🔁 自动化链路详解</h2><h3 id="全流程图"><a href="#全流程图" class="headerlink" title="全流程图"></a>全流程图</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs awk">┌─────────────────────────────────────┐<br>│ <span class="hljs-number">1</span>️⃣  你写完 Hexo 文章                  │<br>│     ~<span class="hljs-regexp">/2_Areas/</span>Sunny-research/        │<br>│     hexo-blog<span class="hljs-regexp">/source/</span>_posts/*.md     │<br>└─────────────────────────────────────┘<br>            ↓<br>┌─────────────────────────────────────┐<br>│ <span class="hljs-number">2</span>️⃣  敲命令: sunny-publish-pipeline    │<br>│     (Python 脚本, <span class="hljs-number">6</span> 平台格式转换)       │<br>└─────────────────────────────────────┘<br>            ↓<br>┌─────────────────────────────────────┐<br>│ <span class="hljs-number">3</span>️⃣  生成 dist<span class="hljs-regexp">/&lt;slug&gt;/</span> 目录            │<br>│     ├─ wechat.html  (公众号美化版)      │<br>│     ├─ zhihu.md     (知乎)             │<br>│     ├─ csdn.md      (CSDN)            │<br>│     ├─ juejin.md    (掘金)             │<br>│     ├─ twitter.txt  (英文 thread)       │<br>│     └─ linkedin.txt (LinkedIn 英文)     │<br>└─────────────────────────────────────┘<br>            ↓<br>┌─────────────────────────────────────┐<br>│ <span class="hljs-number">4</span>️⃣  自动 git add + commit             │<br>│     message: <span class="hljs-string">&quot;📤 multi-platform: ...&quot;</span>  │<br>└─────────────────────────────────────┘<br>            ↓<br>┌─────────────────────────────────────┐<br>│ <span class="hljs-number">5</span>️⃣  zoeb-push → zoebischuribe-cloud   │<br>│     (URL embed PAT 绕过 keychain 干扰) │<br>└─────────────────────────────────────┘<br>            ↓<br>┌─────────────────────────────────────┐<br>│ <span class="hljs-number">6</span>️⃣  GitHub Actions 接力               │<br>│     .github<span class="hljs-regexp">/workflows/</span>auto-distribute │<br>│     ├─ 自动 commit                     │<br>│     ├─ GitHub Pages 自动部署           │<br>│     └─ 飞书 webhook 通知 (可选)         │<br>└─────────────────────────────────────┘<br>            ↓<br>🎉 全部完成, 你手动 <span class="hljs-number">5</span> 分钟粘贴到 <span class="hljs-number">6</span> 个平台<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🧩-各平台格式详解"><a href="#🧩-各平台格式详解" class="headerlink" title="🧩 各平台格式详解"></a>🧩 各平台格式详解</h2><h3 id="微信公众号（wechat-html）"><a href="#微信公众号（wechat-html）" class="headerlink" title="微信公众号（wechat.html）"></a>微信公众号（wechat.html）</h3><p><strong>特点</strong>：</p>
+<ul>
+<li>自带美化 CSS（标题加色、代码块背景、表格居中）</li>
+<li>图片用相对路径（要先上传到公众号 CDN）</li>
+<li>可直接粘贴到 mp.weixin.qq.com</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;font-family: -apple-system, ...&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;color: #2c3e50; ...&quot;</span>&gt;</span>我的文章<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>正文...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">pre</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;background: #f5f5f5; ...&quot;</span>&gt;</span>代码<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="知乎（zhihu-md）"><a href="#知乎（zhihu-md）" class="headerlink" title="知乎（zhihu.md）"></a>知乎（zhihu.md）</h3><p><strong>特点</strong>：</p>
+<ul>
+<li>纯 Markdown，知乎编辑器原生支持</li>
+<li>图片保留为相对路径（粘贴后手动上传）</li>
+<li>标题层级正确（h1&#x2F;h2&#x2F;h3）</li>
+</ul>
+<h3 id="CSDN-掘金（csdn-md-juejin-md）"><a href="#CSDN-掘金（csdn-md-juejin-md）" class="headerlink" title="CSDN &#x2F; 掘金（csdn.md &#x2F; juejin.md）"></a>CSDN &#x2F; 掘金（csdn.md &#x2F; juejin.md）</h3><p><strong>特点</strong>：</p>
+<ul>
+<li>纯 Markdown，与各自编辑器兼容</li>
+<li>代码块带语言标识（&#96;&#96;&#96;python 等）</li>
+<li>表格兼容</li>
+</ul>
+<h3 id="Twitter（twitter-txt）"><a href="#Twitter（twitter-txt）" class="headerlink" title="Twitter（twitter.txt）"></a>Twitter（twitter.txt）</h3><p><strong>特点</strong>：</p>
+<ul>
+<li>自动生成 3-8 条英文 thread</li>
+<li>每条 ≤ 280 字符</li>
+<li>最后一条带「全文链接 →」</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vbnet"><span class="hljs-number">1</span>/<span class="hljs-number">5</span> I just built a complete scLLM SOP <span class="hljs-keyword">on</span> Apple Silicon M4 Pro.<br>Here<span class="hljs-comment">&#x27;s what I learned running Geneformer V1-10M from scratch 🧵</span><br><br><span class="hljs-number">2</span>/<span class="hljs-number">5</span> <span class="hljs-keyword">Step</span> <span class="hljs-number">1</span>: Environment setup. The official guide assumes Linux + CUDA.<br><span class="hljs-keyword">On</span> M4 you need torch-nightly + MPS backend. Here<span class="hljs-comment">&#x27;s the exact pip freeze: ...</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="LinkedIn（linkedin-txt）"><a href="#LinkedIn（linkedin-txt）" class="headerlink" title="LinkedIn（linkedin.txt）"></a>LinkedIn（linkedin.txt）</h3><p><strong>特点</strong>：</p>
+<ul>
+<li>1 条英文长 post（≤ 3000 字符）</li>
+<li>适合专业读者，引出深度技术细节</li>
+<li>末尾带 GitHub Pages 链接</li>
+</ul>
+<hr>
+<h2 id="🛠️-故障排查（高频问题）"><a href="#🛠️-故障排查（高频问题）" class="headerlink" title="🛠️ 故障排查（高频问题）"></a>🛠️ 故障排查（高频问题）</h2><h3 id="❌-问题-1-pipeline-报-“❌-push-失败”"><a href="#❌-问题-1-pipeline-报-“❌-push-失败”" class="headerlink" title="❌ 问题 1: pipeline 报 “❌ push 失败”"></a>❌ 问题 1: pipeline 报 “❌ push 失败”</h3><p><strong>原因</strong>：<code>~/3_Toolbox/bin/zoeb-push</code> 找不到 token 或 PAT 过期</p>
+<p><strong>修复</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 检查 token 是否存在</span><br><span class="hljs-built_in">ls</span> -la ~/.config/zoeb/token<br><span class="hljs-comment"># 应该有 -rw------- (chmod 600)</span><br><br><span class="hljs-comment"># 如果不存在或过期</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;ghp_你的新PATxxxxxxxxxxxxxxxx&quot;</span> &gt; ~/.config/zoeb/token<br><span class="hljs-built_in">chmod</span> 600 ~/.config/zoeb/token<br></code></pre></td></tr></table></figure>
+
+<h3 id="❌-问题-2-pipeline-报-“❌-未找到-posts-md”"><a href="#❌-问题-2-pipeline-报-“❌-未找到-posts-md”" class="headerlink" title="❌ 问题 2: pipeline 报 “❌ 未找到 _posts&#x2F;*.md”"></a>❌ 问题 2: pipeline 报 “❌ 未找到 _posts&#x2F;*.md”</h3><p><strong>原因</strong>：Hexo 文章路径不对</p>
+<p><strong>修复</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 确认文章在正确位置</span><br><span class="hljs-built_in">ls</span> ~/2_Areas/Sunny-research/hexo-blog/source/_posts/<br><br><span class="hljs-comment"># 如果没有，用 hexo new 创建</span><br><span class="hljs-built_in">cd</span> ~/2_Areas/Sunny-research/hexo-blog<br>hexo new <span class="hljs-string">&quot;新标题&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="❌-问题-3-公众号粘贴后排版混乱"><a href="#❌-问题-3-公众号粘贴后排版混乱" class="headerlink" title="❌ 问题 3: 公众号粘贴后排版混乱"></a>❌ 问题 3: 公众号粘贴后排版混乱</h3><p><strong>原因</strong>：直接粘贴了 <code>wechat.html</code>，但没有经过 md2wechat 类工具</p>
+<p><strong>修复</strong>：</p>
+<ol>
+<li>打开 <a target="_blank" rel="noopener" href="https://doocs.gitee.io/md/">https://doocs.gitee.io/md/</a></li>
+<li>把 <code>dist/*/zhihu.md</code> 内容（不是 wechat.html）粘贴到左侧编辑器</li>
+<li>点右侧的「复制到公众号」按钮</li>
+<li>打开 mp.weixin.qq.com，粘贴</li>
+</ol>
+<h3 id="❌-问题-4-图片在公众号里不显示"><a href="#❌-问题-4-图片在公众号里不显示" class="headerlink" title="❌ 问题 4: 图片在公众号里不显示"></a>❌ 问题 4: 图片在公众号里不显示</h3><p><strong>原因</strong>：公众号不能识别相对路径</p>
+<p><strong>修复方案 A（手动）</strong>：</p>
+<ol>
+<li>把图片先传到公众号素材库（拿到永久 URL）</li>
+<li>替换 markdown 里的图片 src</li>
+</ol>
+<p><strong>修复方案 B（半自动）</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1. 把所有图片同步到 GitHub Pages</span><br><span class="hljs-built_in">cd</span> ~/2_Areas/Sunny-research/hexo-blog<br>hexo generate  <span class="hljs-comment"># 把 public/images/ 生成</span><br>~/3_Toolbox/bin/zoeb-push<br><br><span class="hljs-comment"># 2. 替换 markdown 里的相对路径为 GitHub Pages 永久 URL</span><br>DIST_FILE=$(<span class="hljs-built_in">ls</span> -t ~/2_Areas/Sunny-research/dist/*/zhihu.md | <span class="hljs-built_in">head</span> -1)<br>sed -i <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-string">&#x27;s|/images/|https://zoebischuribe-cloud.github.io/Sunny-research/images/|g&#x27;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$DIST_FILE</span>&quot;</span><br><br><span class="hljs-comment"># 3. 然后再用 doocs.gitee.io/md 渲染</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="❌-问题-5-飞书通知没发"><a href="#❌-问题-5-飞书通知没发" class="headerlink" title="❌ 问题 5: 飞书通知没发"></a>❌ 问题 5: 飞书通知没发</h3><p><strong>原因</strong>：<code>~/.config/api-keys/feishu/webhook_url</code> 文件不存在</p>
+<p><strong>修复</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1. 创建飞书机器人 webhook</span><br><span class="hljs-comment">#    飞书群 → 设置 → 群机器人 → 添加自定义机器人 → 复制 webhook URL</span><br><br><span class="hljs-comment"># 2. 存到配置文件</span><br><span class="hljs-built_in">mkdir</span> -p ~/.config/api-keys/feishu<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;https://open.feishu.cn/open-apis/bot/v2/hook/xxxxxxxx&quot;</span> &gt; ~/.config/api-keys/feishu/webhook_url<br><span class="hljs-built_in">chmod</span> 600 ~/.config/api-keys/feishu/webhook_url<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🔄-升级路线图"><a href="#🔄-升级路线图" class="headerlink" title="🔄 升级路线图"></a>🔄 升级路线图</h2><table>
+<thead>
+<tr>
+<th>版本</th>
+<th>状态</th>
+<th>特性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>v1 (2026-06-25)</strong></td>
+<td>✅ 已部署</td>
+<td>单文件 sunny-publish, 6 平台, 手动 commit</td>
+</tr>
+<tr>
+<td><strong>v2 (2026-06-26)</strong></td>
+<td>✅ 已升级</td>
+<td>+ sunny-publish-pipeline (一键流水线) + zoeb-push + GitHub Actions + 飞书通知</td>
+</tr>
+<tr>
+<td>v3 (规划)</td>
+<td>⏳ Q3</td>
+<td>+ 公众号扫码登录态保留（半自动发布） + 知乎 API 直接发布</td>
+</tr>
+<tr>
+<td>v4 (规划)</td>
+<td>⏳ Q4</td>
+<td>+ 内容日历自动选题 + 自动草稿生成 + 一键定时发布</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="📊-当前性能指标"><a href="#📊-当前性能指标" class="headerlink" title="📊 当前性能指标"></a>📊 当前性能指标</h2><ul>
+<li><strong>单篇文章分发耗时</strong>：本地 8 秒 + GH Actions 30 秒 &#x3D; <strong>38 秒</strong></li>
+<li><strong>手动操作</strong>：5 分钟（主要在公众号粘贴）</li>
+<li><strong>平台覆盖</strong>：6 个（wechat &#x2F; zhihu &#x2F; csdn &#x2F; juejin &#x2F; twitter &#x2F; linkedin）</li>
+<li><strong>依赖脚本</strong>：3 个（sunny-publish &#x2F; sunny-publish-pipeline &#x2F; zoeb-push）</li>
+<li><strong>维护成本</strong>：几乎为零（脚本全自动）</li>
+</ul>
+<hr>
+<h2 id="🎓-配合内容日历使用"><a href="#🎓-配合内容日历使用" class="headerlink" title="🎓 配合内容日历使用"></a>🎓 配合内容日历使用</h2><p><strong>当前进度</strong>：W1-W16 已规划（覆盖到 9&#x2F;25）</p>
+<p><strong>每周节奏</strong>：</p>
+<ul>
+<li><strong>周一</strong>：写 Hexo 文章（2-3 小时）</li>
+<li><strong>周二</strong>：跑 <code>sunny-publish-pipeline</code>，分发到 6 平台（5 分钟手动）</li>
+<li><strong>周三-周日</strong>：回复评论 + 写短内容（Twitter &#x2F; 小红书）</li>
+<li><strong>周日</strong>：周复盘，记录到 <code>content-calendar.md</code> 进度表</li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>最后更新</strong>: 2026-06-26
+<strong>下次更新</strong>: 2026-07-01（W1 复盘）
+<strong>维护者</strong>: Sunny (zoebischuribe-cloud)
+<strong>反馈</strong>: 飞书 DM</p>
+</blockquote>
+<hr>
+<h2 id="附录：完整命令清单"><a href="#附录：完整命令清单" class="headerlink" title="附录：完整命令清单"></a>附录：完整命令清单</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># === 安装 ===</span><br><span class="hljs-built_in">chmod</span> +x ~/3_Toolbox/bin/sunny-publish-pipeline<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;export PATH=&quot;$HOME/3_Toolbox/bin:$PATH&quot;&#x27;</span> &gt;&gt; ~/.zshrc<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;alias sunny-pipeline=&quot;~/3_Toolbox/bin/sunny-publish-pipeline&quot;&#x27;</span> &gt;&gt; ~/.zshrc<br><span class="hljs-built_in">source</span> ~/.zshrc<br><br><span class="hljs-comment"># === 配置 token ===</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;ghp_你的PAT&quot;</span> &gt; ~/.config/zoeb/token<br><span class="hljs-built_in">chmod</span> 600 ~/.config/zoeb/token<br><br><span class="hljs-comment"># === 配置飞书 webhook（可选）===</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;https://open.feishu.cn/...&quot;</span> &gt; ~/.config/api-keys/feishu/webhook_url<br><span class="hljs-built_in">chmod</span> 600 ~/.config/api-keys/feishu/webhook_url<br><br><span class="hljs-comment"># === 日常 ===</span><br>sunny-publish-pipeline                          <span class="hljs-comment"># 分发最新文章</span><br>sunny-publish-pipeline &lt;post.md&gt;                <span class="hljs-comment"># 指定文章</span><br>sunny-publish-pipeline --no-push                <span class="hljs-comment"># 不推送</span><br><br><span class="hljs-comment"># === 查看结果 ===</span><br><span class="hljs-built_in">ls</span> -la ~/2_Areas/Sunny-research/dist/           <span class="hljs-comment"># 所有分发产物</span><br><span class="hljs-built_in">ls</span> -la ~/2_Areas/Sunny-research/dist/&lt;slug&gt;/    <span class="hljs-comment"># 单篇文章的 6 平台文件</span><br><br><span class="hljs-comment"># === 回滚 ===</span><br><span class="hljs-built_in">cd</span> ~/2_Areas/Sunny-research<br>git <span class="hljs-built_in">log</span> --oneline | <span class="hljs-built_in">head</span> -5                     <span class="hljs-comment"># 找最近一次 commit</span><br>git revert HEAD                                 <span class="hljs-comment"># 撤销最后一次</span><br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Sunny-research/" class="category-chain-item">Sunny-research</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Sunny-research/SOP%E5%B7%A5%E5%85%B7/" class="category-chain-item">SOP工具</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SOP/" class="print-no-link">#SOP</a>
+      
+        <a href="/tags/Sunny-research/" class="print-no-link">#Sunny-research</a>
+      
+        <a href="/tags/%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%88%86%E5%8F%91/" class="print-no-link">#多平台分发</a>
+      
+        <a href="/tags/%E4%B8%AA%E4%BA%BAIP/" class="print-no-link">#个人IP</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>多平台自动化分发 SOP — 一键同步 6 大平台</div>
+      <div>https://zhuer.github.io/2026/06/26/sunny-multi-platform-sop/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Sunny (zhuer)</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/26/myforestplot-sop-2026/" title="myforestplot 全 API 实测：13/14 通过，从 Logistic 回归到发表级森林图零代码">
+                        <span class="hidden-mobile">myforestplot 全 API 实测：13/14 通过，从 Logistic 回归到发表级森林图零代码</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
