@@ -56,4 +56,4 @@ daily/cron-daily.sh
 
 ## 📡 GitHub
 
-仓库：https://github.com/jiangbo19860/Sunny-research
+仓库：https://github.com/zoebischuribe-cloud/Sunny-research
