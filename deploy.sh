@@ -1,16 +1,16 @@
 #!/bin/bash
-# Outpost 一键部署脚本
+# Sunny-research 一键部署脚本
 # 用法: ./deploy.sh [hexo|zola|all]
 # 默认: all
 
 set -e
 export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH
 
-OUTPOST="/Users/lijiangbo/2_Areas/outpost"
+OUTPOST="/Users/lijiangbo/2_Areas/Sunny-research"
 HEXO="/Users/lijiangbo/.npm-global/bin/hexo"
 TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
 
-echo "🚀 [$TIMESTAMP] Outpost 部署开始"
+echo "🚀 [$TIMESTAMP] Sunny-research 部署开始"
 echo "=================================="
 
 deploy_hexo() {

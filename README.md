@@ -1,11 +1,11 @@
-# 🛰️ Outpost — Sunny's Daily Knowledge Broadcast
+# 🛰️ Sunny-research — Sunny's Daily Knowledge Broadcast
 
 > 每日沉淀 + 多领域分享。Hexo 对外博文 + Zola 个人知识库 + 每日 9:00 cron 自动部署。
 
 ## 📂 目录结构
 
 ```
-outpost/
+Sunny-research/
 ├── hexo-blog/          # 对外博文（Fluid 主题，中文友好）
 │   ├── source/_posts/  # Markdown 文章
 │   ├── public/         # 生成的静态文件
@@ -49,11 +49,11 @@ daily/cron-daily.sh
 ## 🔗 SunnyWiki 软链接
 
 ```bash
-~/Library/CloudStorage/.../SunnyWiki/outpost → /Users/lijiangbo/2_Areas/outpost
+~/Library/CloudStorage/.../SunnyWiki/Sunny-research → /Users/lijiangbo/2_Areas/Sunny-research
 ```
 
-在 Obsidian 里直接访问 outpost 全部内容（不修改原文件）。
+在 Obsidian 里直接访问 Sunny-research 全部内容（不修改原文件）。
 
 ## 📡 GitHub
 
-仓库：https://github.com/jiangbo19860/outpost
+仓库：https://github.com/jiangbo19860/Sunny-research

@@ -1,9 +1,9 @@
 #!/bin/bash
-# Outpost 每日分享 cron 脚本
+# Sunny-research 每日分享 cron 脚本
 # 9:00 跑：hexo + zola 重建 → git push → 飞书通知
 export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH
 
-OUTPOST="/Users/lijiangbo/2_Areas/outpost"
+OUTPOST="/Users/lijiangbo/2_Areas/Sunny-research"
 LOG="$OUTPOST/daily/cron.log"
 DATE=$(date "+%Y-%m-%d")
 
@@ -33,7 +33,7 @@ $OUTPOST/deploy.sh all >> "$LOG" 2>&1
 
 # 3. 飞书通知（如果 lark-cli 存在）
 if command -v lark-cli >/dev/null 2>&1; then
-  lark-cli im send --chat "oc_c89ebe994215a6874722815423efc2e1" --text "📡 Outpost 每日分享已推送 $(date '+%H:%M')。GitHub: https://github.com/jiangbo19860/outpost" 2>>"$LOG" || echo "lark-cli 通知失败（不影响主流程）" >> "$LOG"
+  lark-cli im send --chat "oc_c89ebe994215a6874722815423efc2e1" --text "📡 Sunny-research 每日分享已推送 $(date '+%H:%M')。GitHub: https://github.com/jiangbo19860/Sunny-research" 2>>"$LOG" || echo "lark-cli 通知失败（不影响主流程）" >> "$LOG"
 fi
 
 echo "[$DATE] Cron 完成" >> "$LOG"
