@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>📚 {{ config.title }}</h1>
+<p>{{ config.description }}</p>
+
+<h2>📚 分区</h2>
+<ul>
+  <li><a href="/blog/">Blog</a> — 长文章</li>
+  <li><a href="/notes/">Notes</a> — 短笔记</li>
+  <li><a href="/snippets/">Snippets</a> — 代码片段</li>
+</ul>
+{% endblock content %}

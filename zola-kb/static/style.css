@@ -1,0 +1,42 @@
+/* Minimal Zola theme for Sunny knowledge base */
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, "SF Pro Text", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+  max-width: 880px; margin: 0 auto; padding: 1rem 1.5rem;
+  line-height: 1.7; color: #1a1a1a; background: #fafafa;
+}
+header { border-bottom: 2px solid #2563eb; padding-bottom: 1rem; margin-bottom: 2rem; }
+header h1 { margin: 0; font-size: 1.6rem; }
+header h1 a { color: #2563eb; text-decoration: none; }
+nav { margin-top: 0.5rem; font-size: 0.9rem; }
+nav a { color: #555; text-decoration: none; margin: 0 0.2rem; }
+nav a:hover { color: #2563eb; }
+article h1 { color: #1e293b; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.3rem; }
+article h2 { color: #2563eb; margin-top: 2rem; }
+article h3 { color: #1e40af; }
+.meta { color: #6b7280; font-size: 0.9rem; }
+ul.post-list { list-style: none; padding: 0; }
+ul.post-list li { padding: 0.4rem 0; border-bottom: 1px dashed #e5e7eb; }
+ul.post-list a { color: #1e40af; text-decoration: none; font-weight: 500; }
+ul.post-list a:hover { text-decoration: underline; }
+pre {
+  background: #1e293b; color: #e2e8f0; padding: 1rem;
+  border-radius: 6px; overflow-x: auto; font-size: 0.85rem;
+  line-height: 1.5;
+}
+pre code { background: transparent; color: inherit; padding: 0; }
+code {
+  background: #f1f5f9; color: #be185d;
+  padding: 0.15rem 0.4rem; border-radius: 3px;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+th, td { border: 1px solid #e5e7eb; padding: 0.5rem 0.75rem; text-align: left; }
+th { background: #f1f5f9; font-weight: 600; }
+blockquote {
+  border-left: 4px solid #2563eb; margin: 1rem 0; padding: 0.5rem 1rem;
+  background: #eff6ff; color: #1e40af; border-radius: 0 4px 4px 0;
+}
+footer { border-top: 1px solid #e5e7eb; margin-top: 3rem; padding-top: 1rem; color: #6b7280; font-size: 0.9rem; text-align: center; }
+a { color: #2563eb; }
