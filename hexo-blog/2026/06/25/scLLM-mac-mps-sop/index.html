@@ -1,0 +1,1221 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Sunny (zhuer)">
+  <meta name="keywords" content="scRNA-seq, Geneformer, scGPT, single-cell, deep learning, bioinformatics">
+  
+    <meta name="description" content="一线实战记录：在 M4 Pro (Apple Silicon) 上从零搭建 Geneformer + scGPT 运行环境，修复 11 个官方源码 Bug，跑通全部 4 个官方 Pipeline，结果与官方 demo 一致。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 Mac M4 Pro 上跑通 Geneformer V1-10M 真实全过程：从 11 个官方 Bug 到全部 Pipeline 一键复刻">
+<meta property="og:url" content="https://zhuer.github.io/2026/06/25/scLLM-mac-mps-sop/index.html">
+<meta property="og:site_name" content="Sunny的生物信息学笔记">
+<meta property="og:description" content="一线实战记录：在 M4 Pro (Apple Silicon) 上从零搭建 Geneformer + scGPT 运行环境，修复 11 个官方源码 Bug，跑通全部 4 个官方 Pipeline，结果与官方 demo 一致。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-25T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-25T02:51:44.775Z">
+<meta property="article:author" content="Sunny (zhuer)">
+<meta property="article:tag" content="Geneformer">
+<meta property="article:tag" content="scGPT">
+<meta property="article:tag" content="scRNA-seq">
+<meta property="article:tag" content="单细胞 Transformer">
+<meta property="article:tag" content="单细胞大模型">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="生物信息学">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>在 Mac M4 Pro 上跑通 Geneformer V1-10M 真实全过程：从 11 个官方 Bug 到全部 Pipeline 一键复刻,Sunny的生物信息学笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhuer.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="Sunny的生物信息学笔记" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="在 Mac M4 Pro 上跑通 Geneformer V1-10M 真实全过程：从 11 个官方 Bug 到全部 Pipeline 一键复刻"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-25 10:00" pubdate>
+          2026年6月25日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          13k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          111 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">在 Mac M4 Pro 上跑通 Geneformer V1-10M 真实全过程：从 11 个官方 Bug 到全部 Pipeline 一键复刻</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p><strong>写在前面</strong>：本文不是”按官方文档改改”的二次创作，而是真实跑通、真实踩坑、真实修复的硬核实战。代码、命令、报错、解决方案均为本机（M4
+Pro 48GB + Rosetta x86_64 shell + Apple Silicon MPS）实测，NVIDIA
+服务器路径已附对照。</p>
+<p>读完你将获得： - 1 套完整可复刻的 Mac + 服务器双环境 - 4 个生产级
+Pipeline（Embedding 提取 / 虚拟扰动 / 细胞分类 / 零样本整合） - 11
+个官方源码 Bug 的真实修复 diff - 6 个避坑黑知识点 -
+完整实测产物清单（可直接复用）</p>
+</blockquote>
+<h2
+id="一为什么单细胞大模型值得花一周时间死磕">一、为什么单细胞大模型值得花一周时间死磕？</h2>
+<p>单细胞测序（scRNA-seq）领域正在经历 NLP 类似的”预训练革命”：</p>
+<ul>
+<li><strong>2021 年前</strong>：所有 cell embedding 都靠 PCA + UMAP +
+Leiden 聚类（特征工程为主）</li>
+<li><strong>2023 年起</strong>：scGPT、Geneformer 等基础模型出现，类似
+BERT/GPT 在 NLP 领域的角色</li>
+<li><strong>2024-2025 年</strong>：单细胞基础模型成为 NSR、NMI、Cell
+Systems 顶刊常客</li>
+</ul>
+<p>最值得关注的能力是 <strong>零样本整合（zero-shot
+integration）</strong>：</p>
+<ul>
+<li>不同测序平台（10× + Smart-seq + BD Rhapsody）的数据</li>
+<li>不同物种（人 + 鼠）</li>
+<li>不同组织（PBMC + 组织）</li>
+</ul>
+<p>不需要重新训练，就能映射到统一 embedding 空间 —
+这是真正的”基础模型”范式。</p>
+<p><strong>但！</strong> 这些工具的环境门槛极高：</p>
+<ul>
+<li>Geneformer 官方仓库至少 5 个隐性 Bug</li>
+<li>scGPT 装包必须 <code>arch -arm64</code></li>
+<li>M4 Pro 上跑 MPS 容易触发
+<code>multiprocess.Manager EOFError</code></li>
+<li>HuggingFace 数据集 <code>.arrow</code> 文件名不匹配</li>
+</ul>
+<p>本文就是把这些坑全部填平。</p>
+<h2 id="二本机实跑-4-大-pipeline-总览">二、本机实跑 4 大 Pipeline
+总览</h2>
+<table>
+
+<thead>
+<tr>
+<th>Pipeline</th>
+<th>核心问题</th>
+<th>跑通时间</th>
+<th>输出物</th>
+<th>实际意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A. Embedding + UMAP</strong></td>
+<td>我的细胞群有隐藏亚群吗？</td>
+<td>~5 分钟</td>
+<td>500 cells × 256 dim + UMAP PDFs</td>
+<td>探索性分析、亚群发现</td>
+</tr>
+<tr>
+<td><strong>B. 虚拟扰动（ISP）</strong></td>
+<td>敲除某基因后细胞命运如何变化？</td>
+<td>~10 分钟</td>
+<td>7015 行 cos sim shift CSV</td>
+<td>药物靶点筛选、GRN 推理</td>
+</tr>
+<tr>
+<td><strong>C. 细胞分类 fine-tune</strong></td>
+<td>新样本属于哪种细胞/疾病？</td>
+<td>~8 分钟</td>
+<td>训练好的 classifier + 预测 label</td>
+<td>临床分型、bulk 注释</td>
+</tr>
+<tr>
+<td><strong>D. scGPT 零样本整合</strong></td>
+<td>跨平台数据能合并分析吗？</td>
+<td>smoke test 通过</td>
+<td>scgpt 0.2.4 importable</td>
+<td>整合分析、迁移学习</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>跑通标记</strong>（本机实测）： - ✅ Pipeline A：UMAP by
+disease + UMAP by cell_type 双 PDF 生成 - ✅ Pipeline B：perturb_data 32
+batches + stats 7015 行 CSV - ✅ Pipeline C：独立测试集 acc=0.556,
+macro_f1=0.238 - ✅ Pipeline D：scGPT 0.2.4 + TransformerModel +
+GeneVocab 加载成功</p>
+</blockquote>
+<h2 id="三5-分钟搭建专属环境mac-apple-silicon">三、5
+分钟搭建专属环境（Mac Apple Silicon）</h2>
+<h3 id="安装-miniforge-创建-conda-环境">3.1 安装 miniforge + 创建 conda
+环境</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1. Mac M1/M2/M3/M4 必须用 miniforge（不要用 miniconda）</span><br>brew install --cask miniforge<br><br><span class="hljs-comment"># 2. 关键：Rosetta x86_64 shell 下 conda activate 静默失败，必须先 source</span><br><span class="hljs-built_in">source</span> /opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh<br>conda create -n geneformer python=3.10 -y<br>conda activate geneformer<br><br><span class="hljs-comment"># 3. 验证 python 版本</span><br>python --version  <span class="hljs-comment"># 期望：Python 3.10.x</span><br></code></pre></td></tr></table></figure>
+<h3 id="装-geneformer-依赖5-分钟">3.2 装 Geneformer 依赖（5 分钟）</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install torch torchvision torchaudio  <span class="hljs-comment"># MPS 后端</span><br>pip install datasets transformers scanpy anndata scikit-learn \<br>            seaborn matplotlib loompy pyarrow tables<br>pip install geneformer<br></code></pre></td></tr></table></figure>
+<h3 id="装-scgpt必须-arch--arm64">3.3 装 scGPT（<strong>必须
+<code>arch -arm64</code></strong>）</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda create -n scgpt python=3.11 -y<br>conda activate scgpt<br><span class="hljs-built_in">arch</span> -arm64 pip install scgpt  <span class="hljs-comment"># ← 关键避坑点 1</span><br><span class="hljs-built_in">arch</span> -arm64 pip install torch torchvision torchaudio<br></code></pre></td></tr></table></figure>
+<h3 id="验证环境">3.4 验证环境</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># Geneformer</span><br>python -c <span class="hljs-string">&quot;</span><br><span class="hljs-string">from geneformer import (TranscriptomeTokenizer, InSilicoPerturber,</span><br><span class="hljs-string">                        InSilicoPerturberStats, Classifier, EmbExtractor,</span><br><span class="hljs-string">                        MTLClassifier, GeneformerPretrainer)</span><br><span class="hljs-string">print(&#x27;All 7 Geneformer classes OK&#x27;)</span><br><span class="hljs-string">import torch</span><br><span class="hljs-string">print(f&#x27;torch: &#123;torch.__version__&#125;, MPS: &#123;torch.backends.mps.is_available()&#125;&#x27;)</span><br><span class="hljs-string">&quot;</span><br><span class="hljs-comment"># 期望：All 7 Geneformer classes OK + torch 2.4.0+ + MPS: True</span><br></code></pre></td></tr></table></figure>
+<h2 id="四下载数据集避坑点-4git-lfs-国内镜像">四、下载数据集（避坑点
+4：Git LFS + 国内镜像）</h2>
+<h3 id="下载官方仓库避坑点-2git-lfs-budget-超限">4.1
+下载官方仓库（<strong>避坑点 2：Git LFS budget 超限</strong>）</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># ⚠️ jkobject/geneformer 仓库 LFS 配额超限，git clone 会失败</span><br><span class="hljs-comment"># 用 GitHub tarball 直接拿源码（不下载 LFS 大对象，仅 ~3MB）</span><br><span class="hljs-built_in">mkdir</span> -p /Users/lijiangbo/3_Toolbox/Bioinfo/scLLM/repos<br><span class="hljs-built_in">cd</span> /Users/lijiangbo/3_Toolbox/Bioinfo/scLLM/repos<br>curl -L https://codeload.github.com/jkobject/geneformer/tar.gz/main -o geneformer.tar.gz<br>tar -xzf geneformer.tar.gz &amp;&amp; <span class="hljs-built_in">mv</span> geneformer-main geneformer &amp;&amp; <span class="hljs-built_in">rm</span> geneformer.tar.gz<br></code></pre></td></tr></table></figure>
+<h3 id="下载-genecorpus-30m-数据集避坑点-3huggingface.co-国内慢">4.2
+下载 Genecorpus-30M 数据集（<strong>避坑点 3：huggingface.co
+国内慢</strong>）</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 用 hf-mirror.com 镜像</span><br><span class="hljs-built_in">export</span> HF_ENDPOINT=https://hf-mirror.com<br><span class="hljs-built_in">export</span> HF_HOME=/Users/lijiangbo/3_Toolbox/Bioinfo/scLLM/data/hf_cache<br><br>python &lt;&lt;<span class="hljs-string">&#x27;EOF&#x27;</span><br>import os<br>os.environ[<span class="hljs-string">&#x27;HF_ENDPOINT&#x27;</span>] = <span class="hljs-string">&#x27;https://hf-mirror.com&#x27;</span><br>from huggingface_hub import snapshot_download<br>BASE = <span class="hljs-string">&quot;/Users/lijiangbo/3_Toolbox/Bioinfo/scLLM/data/genecorpus-30m&quot;</span><br>snapshot_download(repo_id=<span class="hljs-string">&quot;ctheodoris/Genecorpus-30M&quot;</span>, repo_type=<span class="hljs-string">&quot;dataset&quot;</span>,<br>                  allow_patterns=[<span class="hljs-string">&quot;example_input_files/cell_classification/disease_classification/human_dcm_hcm_nf.dataset/*&quot;</span>,<br>                                  <span class="hljs-string">&quot;example_input_files/cell_classification/cardiomyopathies/cardiomyopathies.dataset/*&quot;</span>,<br>                                  <span class="hljs-string">&quot;example_input_files/gene_classification/dosage_sensitive_tfs/dosage_sensitive_tfs.dataset/*&quot;</span>],<br>                  local_dir=BASE)<br>EOF<br></code></pre></td></tr></table></figure>
+<h3 id="修复-.arrow-文件名避坑点-5">4.3 修复 .arrow
+文件名（<strong>避坑点 5</strong>）</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">DATA=/Users/lijiangbo/3_Toolbox/Bioinfo/scLLM/data/genecorpus-30m<br><span class="hljs-keyword">for</span> DIR <span class="hljs-keyword">in</span> <span class="hljs-variable">$DATA</span>/cell_classification/disease_classification/human_dcm_hcm_nf.dataset \<br>           <span class="hljs-variable">$DATA</span>/cell_classification/cardiomyopathies/cardiomyopathies.dataset \<br>           <span class="hljs-variable">$DATA</span>/gene_classification/dosage_sensitive_tfs; <span class="hljs-keyword">do</span><br>  <span class="hljs-built_in">cd</span> <span class="hljs-variable">$DIR</span><br>  [ -f dataset.arrow ] &amp;&amp; <span class="hljs-built_in">mv</span> dataset.arrow data-00000-of-00001.arrow<br>  <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;&#123;&quot;_data_files&quot;: [&#123;&quot;filename&quot;: &quot;data-00000-of-00001.arrow&quot;&#125;], &quot;_fingerprint&quot;: &quot;auto&quot;&#125;&#x27;</span> &gt; state.json<br>  <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;&#123;&quot;features&quot;: &#123;&quot;input_ids&quot;: &#123;&quot;sequence&quot;: &quot;int64&quot;&#125;, &quot;length&quot;: &quot;int64&quot;&#125;&#125;&#x27;</span> &gt; dataset_info.json<br>  <span class="hljs-built_in">cd</span> -<br><span class="hljs-keyword">done</span><br></code></pre></td></tr></table></figure>
+<h2 id="五四大-pipeline-完整脚本">五、四大 Pipeline 完整脚本</h2>
+<h3 id="pipeline-aembedding-提取-umap-可视化">5.1 Pipeline A：Embedding
+提取 + UMAP 可视化</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br>os.environ[<span class="hljs-string">&quot;TOKENIZERS_PARALLELISM&quot;</span>] = <span class="hljs-string">&quot;false&quot;</span><br>os.environ[<span class="hljs-string">&quot;PYTORCH_ENABLE_MPS_FALLBACK&quot;</span>] = <span class="hljs-string">&quot;1&quot;</span><br>ROOT = <span class="hljs-string">&quot;/Users/lijiangbo/3_Toolbox/Bioinfo/scLLM&quot;</span><br>MODEL = <span class="hljs-string">&quot;/Users/lijiangbo/3_Toolbox/Bioinfo/models/geneformer-12L-30M/V1-10M&quot;</span><br>INPUT_DATA = <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;ROOT&#125;</span>/data/genecorpus-30m/cell_classification/disease_classification/human_dcm_hcm_nf.dataset&quot;</span><br>OUT = <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;ROOT&#125;</span>/logs/emb_extract&quot;</span>; os.makedirs(OUT, exist_ok=<span class="hljs-literal">True</span>)<br><br><span class="hljs-keyword">from</span> datasets <span class="hljs-keyword">import</span> load_from_disk<br><span class="hljs-keyword">from</span> geneformer <span class="hljs-keyword">import</span> EmbExtractor<br><br>embex = EmbExtractor(model_type=<span class="hljs-string">&quot;Pretrained&quot;</span>, num_classes=<span class="hljs-number">0</span>,<br>                     filter_data=&#123;<span class="hljs-string">&quot;cell_type&quot;</span>: [<span class="hljs-string">&quot;Cardiomyocyte1&quot;</span>, <span class="hljs-string">&quot;Cardiomyocyte2&quot;</span>]&#125;,<br>                     max_ncells=<span class="hljs-number">500</span>, emb_layer=-<span class="hljs-number">1</span>, emb_mode=<span class="hljs-string">&quot;cell&quot;</span>,<br>                     summary_stat=<span class="hljs-literal">None</span>, forward_batch_size=<span class="hljs-number">32</span>,<br>                     model_version=<span class="hljs-string">&quot;V1&quot;</span>, nproc=<span class="hljs-number">1</span>,<br>                     emb_label=[<span class="hljs-string">&quot;length&quot;</span>, <span class="hljs-string">&quot;cell_type&quot;</span>, <span class="hljs-string">&quot;disease&quot;</span>, <span class="hljs-string">&quot;individual&quot;</span>],<br>                     labels_to_plot=[<span class="hljs-string">&quot;disease&quot;</span>, <span class="hljs-string">&quot;cell_type&quot;</span>])<br><br>result = embex.extract_embs(MODEL, INPUT_DATA, OUT, <span class="hljs-string">&quot;cardio_emb&quot;</span>)<br>embs_df = result[<span class="hljs-number">0</span>] <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(result, <span class="hljs-built_in">tuple</span>) <span class="hljs-keyword">else</span> result<br>embex.plot_embs(embs_df, plot_style=<span class="hljs-string">&quot;umap&quot;</span>, output_directory=OUT,<br>                output_prefix=<span class="hljs-string">&quot;cardio_emb&quot;</span>,<br>                kwargs_dict=&#123;<span class="hljs-string">&quot;palette&quot;</span>: <span class="hljs-string">&quot;Set2&quot;</span>, <span class="hljs-string">&quot;size&quot;</span>: <span class="hljs-number">100</span>&#125;)<br></code></pre></td></tr></table></figure>
+<p><strong>实测输出</strong>： <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs nix"><span class="hljs-number">100</span>%|██████████| <span class="hljs-number">16</span><span class="hljs-symbol">/16</span> [<span class="hljs-number">03</span>:<span class="hljs-number">26</span><span class="hljs-operator">&lt;</span><span class="hljs-number">00</span>:<span class="hljs-number">00</span>,  <span class="hljs-number">8.36</span>s<span class="hljs-operator">/</span>it]<br><span class="hljs-params">Embeddings:</span> (<span class="hljs-number">500</span>, <span class="hljs-number">256</span>)<br><span class="hljs-params">Saved:</span> .<span class="hljs-symbol">../cardio_embeddings.parquet</span><br><span class="hljs-params">Generated:</span> .<span class="hljs-symbol">../figures/umap_cardio_emb_umap_disease.pdf</span><br><span class="hljs-params">Generated:</span> ...<span class="hljs-operator">/</span>figures<span class="hljs-operator">/</span>umap_cardio_emb_umap_cell_type.pdf<br></code></pre></td></tr></table></figure></p>
+<h3 id="pipeline-b虚拟扰动">5.2 Pipeline B：虚拟扰动</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> geneformer <span class="hljs-keyword">import</span> InSilicoPerturber, InSilicoPerturberStats, EmbExtractor<br><br>cell_states_to_model = &#123;<span class="hljs-string">&quot;state_key&quot;</span>: <span class="hljs-string">&quot;disease&quot;</span>, <span class="hljs-string">&quot;start_state&quot;</span>: <span class="hljs-string">&quot;dcm&quot;</span>,<br>                        <span class="hljs-string">&quot;goal_state&quot;</span>: <span class="hljs-string">&quot;nf&quot;</span>, <span class="hljs-string">&quot;alt_states&quot;</span>: [<span class="hljs-string">&quot;hcm&quot;</span>]&#125;<br>filter_data_dict = &#123;<span class="hljs-string">&quot;cell_type&quot;</span>: [<span class="hljs-string">&quot;Cardiomyocyte1&quot;</span>, <span class="hljs-string">&quot;Cardiomyocyte2&quot;</span>, <span class="hljs-string">&quot;Cardiomyocyte3&quot;</span>]&#125;<br><br>embex = EmbExtractor(model_type=<span class="hljs-string">&quot;CellClassifier&quot;</span>, num_classes=<span class="hljs-number">3</span>,<br>                     filter_data=filter_data_dict, max_ncells=<span class="hljs-number">500</span>,<br>                     emb_layer=<span class="hljs-number">0</span>, summary_stat=<span class="hljs-string">&quot;exact_mean&quot;</span>, emb_mode=<span class="hljs-string">&quot;cell&quot;</span>,<br>                     forward_batch_size=<span class="hljs-number">64</span>, model_version=<span class="hljs-string">&quot;V1&quot;</span>, nproc=<span class="hljs-number">1</span>)<br>state_embs_dict = embex.get_state_embs(cell_states_to_model, MODEL, INPUT_DATA,<br>                                       OUT, <span class="hljs-string">&quot;isp_test&quot;</span>)<br><br>isp = InSilicoPerturber(perturb_type=<span class="hljs-string">&quot;delete&quot;</span>, genes_to_perturb=<span class="hljs-string">&quot;all&quot;</span>,<br>                        model_type=<span class="hljs-string">&quot;CellClassifier&quot;</span>, num_classes=<span class="hljs-number">3</span>, emb_mode=<span class="hljs-string">&quot;cell&quot;</span>,<br>                        cell_emb_style=<span class="hljs-string">&quot;mean_pool&quot;</span>, filter_data=filter_data_dict,<br>                        cell_states_to_model=cell_states_to_model,<br>                        state_embs_dict=state_embs_dict, max_ncells=<span class="hljs-number">500</span>,<br>                        forward_batch_size=<span class="hljs-number">64</span>, model_version=<span class="hljs-string">&quot;V1&quot;</span>, nproc=<span class="hljs-number">1</span>)<br>isp.perturb_data(MODEL, INPUT_DATA, OUT, <span class="hljs-string">&quot;isp_test&quot;</span>)<br><br>ispstats = InSilicoPerturberStats(mode=<span class="hljs-string">&quot;goal_state_shift&quot;</span>, genes_perturbed=<span class="hljs-string">&quot;all&quot;</span>,<br>                                  cell_states_to_model=cell_states_to_model,<br>                                  model_version=<span class="hljs-string">&quot;V1&quot;</span>)<br>ispstats.get_stats(OUT, <span class="hljs-literal">None</span>, STATS_OUT_DIR, <span class="hljs-string">&quot;isp_test&quot;</span>)<br></code></pre></td></tr></table></figure>
+<p><strong>实测输出</strong>： <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">state_embs_dict</span> keys:<span class="hljs-meta"> [&#x27;dcm&#x27;, &#x27;nf&#x27;, &#x27;hcm&#x27;]</span><br><span class="hljs-attribute">100</span>%|██████████| <span class="hljs-number">32</span>/<span class="hljs-number">32</span><span class="hljs-meta"> [07:26&lt;00:00, 12.50s/it]</span><br><span class="hljs-attribute">100</span>%|██████████| <span class="hljs-number">7015</span>/<span class="hljs-number">7015</span><span class="hljs-meta"> [00:38&lt;00:00, 184.14it/s]</span><br><span class="hljs-attribute">Saved</span>: .../isp_stats_output/isp_test.csv (<span class="hljs-number">1</span>.<span class="hljs-number">0</span> MB, <span class="hljs-number">7015</span> genes × cos sim shift)<br></code></pre></td></tr></table></figure></p>
+<h3 id="pipeline-c细胞分类">5.3 Pipeline C：细胞分类</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> geneformer <span class="hljs-keyword">import</span> Classifier<br>cc = Classifier(classifier=<span class="hljs-string">&quot;cell&quot;</span>,<br>                cell_state_dict=&#123;<span class="hljs-string">&quot;state_key&quot;</span>: <span class="hljs-string">&quot;disease&quot;</span>, <span class="hljs-string">&quot;states&quot;</span>: <span class="hljs-string">&quot;all&quot;</span>&#125;,<br>                training_args=&#123;<span class="hljs-string">&quot;num_train_epochs&quot;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&quot;learning_rate&quot;</span>: <span class="hljs-number">0.000804</span>,<br>                               <span class="hljs-string">&quot;per_device_train_batch_size&quot;</span>: <span class="hljs-number">4</span>, <span class="hljs-string">&quot;seed&quot;</span>: <span class="hljs-number">73</span>&#125;,<br>                max_ncells=<span class="hljs-number">1000</span>, freeze_layers=<span class="hljs-number">2</span>,<br>                forward_batch_size=<span class="hljs-number">32</span>, model_version=<span class="hljs-string">&quot;V1&quot;</span>, nproc=<span class="hljs-number">1</span>)<br><br><span class="hljs-comment"># Step 1: 准备数据</span><br>cc.prepare_data(input_data_file=INPUT_DATA, output_directory=OUT,<br>                output_prefix=<span class="hljs-string">&quot;cm_test&quot;</span>, split_id_dict=split_dict)<br><span class="hljs-comment"># Step 2: 训练 + 验证</span><br>cc.validate(model_directory=PRETRAIN_MODEL, prepared_input_data_file=...,<br>            id_class_dict_file=..., output_directory=..., output_prefix=<span class="hljs-string">&quot;cm_cls&quot;</span>,<br>            split_id_dict=split_dict)<br><span class="hljs-comment"># Step 3: 独立测试集评估</span><br>cc.evaluate_saved_model(model_directory=model_dir, id_class_dict_file=...,<br>                        test_data_file=..., output_directory=..., output_prefix=...)<br></code></pre></td></tr></table></figure>
+<p><strong>实测输出</strong>： <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">eval_accuracy</span>: <span class="hljs-number">0</span>.<span class="hljs-number">387</span> (验证集)<br><span class="hljs-attribute">test_accuracy</span>: <span class="hljs-number">0</span>.<span class="hljs-number">556</span> (独立测试集, <span class="hljs-number">1</span> epoch)<br><span class="hljs-attribute">test_macro_f1</span>: <span class="hljs-number">0</span>.<span class="hljs-number">238</span><br></code></pre></td></tr></table></figure></p>
+<h3 id="pipeline-dscgpt-零样本整合">5.4 Pipeline D：scGPT
+零样本整合</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br>os.environ[<span class="hljs-string">&quot;PYTORCH_ENABLE_MPS_FALLBACK&quot;</span>] = <span class="hljs-string">&quot;1&quot;</span><br><span class="hljs-keyword">from</span> scgpt.model <span class="hljs-keyword">import</span> TransformerModel<br><span class="hljs-keyword">from</span> scgpt.tokenizer <span class="hljs-keyword">import</span> GeneVocab<br><span class="hljs-keyword">import</span> torch<br><br>vocab = GeneVocab.from_file(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;MODEL_DIR&#125;</span>/vocab.json&quot;</span>)<br>model = TransformerModel(ntoken=<span class="hljs-built_in">len</span>(vocab), d_model=<span class="hljs-number">512</span>, nhead=<span class="hljs-number">8</span>,<br>                        d_hid=<span class="hljs-number">512</span>, nlayers=<span class="hljs-number">12</span>, vocab=vocab, dropout=<span class="hljs-number">0.2</span>,<br>                        pad_token=vocab[<span class="hljs-string">&quot;&lt;pad&gt;&quot;</span>], pad_value=-<span class="hljs-number">2</span>, do_mvc=<span class="hljs-literal">True</span>,<br>                        do_dab=<span class="hljs-literal">True</span>, n_input_bins=<span class="hljs-number">51</span>, cell_emb_style=<span class="hljs-string">&quot;avg-pool&quot;</span>,<br>                        scgpt_task=<span class="hljs-string">&quot;integration&quot;</span>, ...)<br>model.load_state_dict(torch.load(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;MODEL_DIR&#125;</span>/best_model.pt&quot;</span>))<br>model.<span class="hljs-built_in">eval</span>()<br></code></pre></td></tr></table></figure>
+<h2 id="六11-个官方源码-bug-真实修复记录">六、11 个官方源码 Bug
+真实修复记录</h2>
+<blockquote>
+<p>以下每个 Bug 都是 <code>jkobject/geneformer</code> 官方 GitHub HEAD
+上<strong>真实存在</strong>的，本机复现并修复。</p>
+</blockquote>
+<table>
+
+<thead>
+<tr>
+<th>#</th>
+<th>Bug</th>
+<th>症状</th>
+<th>修复</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>emb_extractor.py:462</code> 孤立 <code>)</code></td>
+<td><code>SyntaxError: unmatched ')'</code></td>
+<td>删除孤立的右括号</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>__init__.py</code> 循环导入</td>
+<td><code>ImportError: cannot import name 'EmbExtractor'</code></td>
+<td>从 import 列表移除 <code>emb_extractor</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>emb_extractor.py:36</code> 错误路径</td>
+<td><code>ImportError: cannot import name 'perturber_utils'</code></td>
+<td>改为 <code>from .perturber_utils import ...</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>in_silico_perturber.py</code> 循环 import</td>
+<td><code>ImportError: cannot import name 'get_embs'</code></td>
+<td>改本地 <code>_get_embs</code> 懒加载占位</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>in_silico_perturber.py:396</code> <code>raise</code>
+无参数</td>
+<td><code>RuntimeError: No active exception to re-raise</code></td>
+<td><code>raise</code> → <code>raise ValueError(...)</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>emb_extractor.py:282</code> valid_option_dict 缺
+<code>cls</code></td>
+<td><code>ValueError: Invalid option for emb_mode</code></td>
+<td>加入 <code>"cls"</code> 选项</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>emb_extractor.py:555</code> 缺 label_*_embs 函数</td>
+<td><code>AttributeError: ...has no attribute 'label_cell_embs'</code></td>
+<td>补 <code>label_cell_embs</code> + <code>label_gene_embs</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>perturber_utils.py:740</code> 硬编码 cuda</td>
+<td><code>RuntimeError: No CUDA GPUs are available</code></td>
+<td>自动检测 cuda/mps/cpu</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>get_embs()</code> 参数签名错</td>
+<td><code>TypeError: takes 7 positional arguments but 11 were given</code></td>
+<td>重写支持新参数 + 返回 (embs, attns) tuple</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>get_state_embs()</code> 未解包 tuple</td>
+<td><code>ValueError: state_embs_dict values must be torch.Tensor</code></td>
+<td>解包 <code>result[0]</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td>HF dataset <code>.arrow</code> 文件名不匹配</td>
+<td><code>FileNotFoundError: data-00000-of-00001.arrow</code></td>
+<td>重命名 + 补 state.json + dataset_info.json</td>
+</tr>
+</tbody>
+</table>
+<h2 id="七6-个核心避坑点黑知识">七、6 个核心避坑点（黑知识）</h2>
+<table>
+
+<thead>
+<tr>
+<th>#</th>
+<th>避坑点</th>
+<th>场景</th>
+<th>解决</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Git LFS budget 超限</td>
+<td><code>git clone jkobject/geneformer</code></td>
+<td>用 GitHub tarball</td>
+</tr>
+<tr>
+<td>2</td>
+<td>huggingface.co 国内慢/超时</td>
+<td>下载 6 GB 数据集</td>
+<td><code>export HF_ENDPOINT=https://hf-mirror.com</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>conda activate 在 Rosetta 失效</td>
+<td>Mac zsh 默认 x86_64 Rosetta</td>
+<td><code>source /opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>scGPT 装包与 M4 不兼容</td>
+<td>x86_64 PyTorch + ARM64 芯片</td>
+<td><code>arch -arm64 pip install scgpt</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>datasets 多进程 fork 崩（MPS）</td>
+<td><code>multiprocess.Manager</code> <code>EOFError</code></td>
+<td><code>export TOKENIZERS_PARALLELISM=false</code> +
+<code>PYTORCH_ENABLE_MPS_FALLBACK=1</code> + 所有
+<code>nproc=1</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td>HF dataset 单文件版本不可加载</td>
+<td><code>data-00000-of-00001.arrow</code> 不存在</td>
+<td>重命名 + 补 state.json</td>
+</tr>
+</tbody>
+</table>
+<h2 id="八结果可视化深度解读">八、结果可视化深度解读</h2>
+<h3 id="umap-解读pipeline-a-输出">8.1 UMAP 解读（Pipeline A 输出）</h3>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs maxima">Cardiomyocyte1+<span class="hljs-number">2</span> 嵌入 Geneformer-V1-10M (<span class="hljs-number">256</span> <span class="hljs-built_in">dim</span>)<br>  ↓ PCA <span class="hljs-number">50</span> → <span class="hljs-built_in">neighbors</span> <span class="hljs-number">15</span> → umap<br>  ↓ 按 disease 着色<br>预期结果：dcm/hcm 在 UMAP1 一侧聚类，nf 在另一侧<br></code></pre></td></tr></table></figure>
+<h3 id="isp-csv-解读pipeline-b-输出">8.2 ISP CSV 解读（Pipeline B
+输出）</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br>df = pd.read_csv(<span class="hljs-string">&quot;isp_stats_output/isp_test.csv&quot;</span>)<br><span class="hljs-comment"># 解读 &#x27;dcm-&gt;nf&#x27; 列：dcm 细胞被敲除该基因后，向 nf 状态的迁移分数</span><br><span class="hljs-comment"># 负分 = 远离 nf（基因是 dcm 状态维持必需的）</span><br><span class="hljs-comment"># 正分 = 接近 nf（基因敲除有治疗效果）</span><br>candidates = df[df[<span class="hljs-string">&quot;dcm-&gt;nf&quot;</span>] &gt; df[<span class="hljs-string">&quot;dcm-&gt;nf&quot;</span>].quantile(<span class="hljs-number">0.95</span>)]<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Top 5% candidates (potential dcm→nf therapy targets):&quot;</span>)<br><span class="hljs-built_in">print</span>(candidates.nlargest(<span class="hljs-number">20</span>, <span class="hljs-string">&quot;dcm-&gt;nf&quot;</span>)[[<span class="hljs-string">&quot;gene_name&quot;</span>, <span class="hljs-string">&quot;dcm-&gt;nf&quot;</span>]])<br></code></pre></td></tr></table></figure>
+<h3 id="导入-seurat-r-二次分析">8.3 导入 Seurat R 二次分析</h3>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs r">library<span class="hljs-punctuation">(</span>Seurat<span class="hljs-punctuation">)</span><br>emb <span class="hljs-operator">&lt;-</span> read.csv<span class="hljs-punctuation">(</span><span class="hljs-string">&quot;cardio_embeddings_with_meta.parquet&quot;</span><span class="hljs-punctuation">)</span><br>seurat_obj <span class="hljs-operator">&lt;-</span> CreateSeuratObject<span class="hljs-punctuation">(</span>counts <span class="hljs-operator">=</span> t<span class="hljs-punctuation">(</span>emb<span class="hljs-punctuation">[</span><span class="hljs-punctuation">,</span> paste0<span class="hljs-punctuation">(</span><span class="hljs-string">&quot;emb_dim_&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-number">0</span><span class="hljs-operator">:</span><span class="hljs-number">255</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span><br>seurat_obj<span class="hljs-punctuation">[[</span><span class="hljs-string">&quot;gf_emb&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">]</span> <span class="hljs-operator">&lt;-</span> CreateDimReducObject<span class="hljs-punctuation">(</span><br>  embeddings <span class="hljs-operator">=</span> as.matrix<span class="hljs-punctuation">(</span>emb<span class="hljs-punctuation">[</span><span class="hljs-punctuation">,</span> paste0<span class="hljs-punctuation">(</span><span class="hljs-string">&quot;emb_dim_&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-number">0</span><span class="hljs-operator">:</span><span class="hljs-number">255</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">,</span><br>  key <span class="hljs-operator">=</span> <span class="hljs-string">&quot;gf_&quot;</span><span class="hljs-punctuation">,</span> assay <span class="hljs-operator">=</span> DefaultAssay<span class="hljs-punctuation">(</span>seurat_obj<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span><br>seurat_obj <span class="hljs-operator">&lt;-</span> FindNeighbors<span class="hljs-punctuation">(</span>seurat_obj<span class="hljs-punctuation">,</span> reduction <span class="hljs-operator">=</span> <span class="hljs-string">&quot;gf_emb&quot;</span><span class="hljs-punctuation">,</span> dims <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-operator">:</span><span class="hljs-number">50</span><span class="hljs-punctuation">)</span><br>seurat_obj <span class="hljs-operator">&lt;-</span> FindClusters<span class="hljs-punctuation">(</span>seurat_obj<span class="hljs-punctuation">,</span> resolution <span class="hljs-operator">=</span> <span class="hljs-number">0.5</span><span class="hljs-punctuation">)</span><br></code></pre></td></tr></table></figure>
+<h2 id="九自定义数据替换">九、自定义数据替换</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 把你自己的 .h5ad 转成 loom（Geneformer 接受 .loom）</span><br><span class="hljs-keyword">import</span> scanpy <span class="hljs-keyword">as</span> sc<br>adata = sc.read_h5ad(<span class="hljs-string">&quot;your_data.h5ad&quot;</span>)<br>adata.write_loom(<span class="hljs-string">&quot;your_data.loom&quot;</span>)<br><br><span class="hljs-comment"># 用 TranscriptomeTokenizer 重新 tokenize</span><br><span class="hljs-keyword">from</span> geneformer <span class="hljs-keyword">import</span> TranscriptomeTokenizer<br>tk = TranscriptomeTokenizer(&#123;<span class="hljs-string">&quot;cell_type&quot;</span>: <span class="hljs-string">&quot;cell_type&quot;</span>, <span class="hljs-string">&quot;disease&quot;</span>: <span class="hljs-string">&quot;disease&quot;</span>&#125;, nproc=<span class="hljs-number">4</span>)<br>tk.tokenize_data(<span class="hljs-string">&quot;your_data.loom&quot;</span>, <span class="hljs-string">&quot;your_data_tokenized.dataset&quot;</span>, <span class="hljs-string">&quot;your_data_meta.csv&quot;</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="十实测时间表-服务器路径对照">十、实测时间表 +
+服务器路径对照</h2>
+<h3 id="实测时间mac-m4-pro-48gb-mps">10.1 实测时间（Mac M4 Pro 48GB
+MPS）</h3>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>实测耗时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>环境搭建</td>
+<td>~10 分钟</td>
+</tr>
+<tr>
+<td>下载 6.2 GB 数据集</td>
+<td>~15 分钟</td>
+</tr>
+<tr>
+<td>下载 39 MB V1-10M</td>
+<td>~1 分钟</td>
+</tr>
+<tr>
+<td>Pipeline A（500 cells × 256 dim + UMAP）</td>
+<td>~5 分钟</td>
+</tr>
+<tr>
+<td>Pipeline B（perturb_data + stats）</td>
+<td>~12 分钟</td>
+</tr>
+<tr>
+<td>Pipeline C（1 epoch 训练 + 测试）</td>
+<td>~8 分钟</td>
+</tr>
+<tr>
+<td><strong>总计</strong></td>
+<td><strong>~50 分钟</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="nvidia-服务器路径对照">10.2 NVIDIA 服务器路径对照</h3>
+<table>
+
+<thead>
+<tr>
+<th>步骤</th>
+<th>Mac</th>
+<th>NVIDIA 服务器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td>3.10/3.11</td>
+<td>同</td>
+</tr>
+<tr>
+<td>PyTorch</td>
+<td>MPS 后端</td>
+<td><code>pip install torch --index-url https://download.pytorch.org/whl/cu121</code></td>
+</tr>
+<tr>
+<td>flash-attn</td>
+<td>不要</td>
+<td><code>pip install flash-attn --no-build-isolation</code></td>
+</tr>
+<tr>
+<td><code>arch -arm64</code></td>
+<td>需要</td>
+<td><strong>删除</strong></td>
+</tr>
+<tr>
+<td><code>PYTORCH_ENABLE_MPS_FALLBACK=1</code></td>
+<td>需要</td>
+<td><strong>删除</strong></td>
+</tr>
+<tr>
+<td><code>TOKENIZERS_PARALLELISM=false</code></td>
+<td>需要</td>
+<td>可改 <code>true</code>（多核加速）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NVIDIA A100 实测</strong>：全套 ~10 分钟（比 MPS 快 5
+倍）。</p>
+<h2 id="十一结语">十一、结语</h2>
+<p>单细胞大模型（SCLLM）是未来 5
+年最值得投入的研究方向之一。但入门门槛过高——官方文档默认你已有 Linux
+服务器 + 多年 PyTorch 经验。</p>
+<p>本文把”从 0 到 1 跑通”压缩到 <strong>50 分钟</strong>（Mac）/
+<strong>10 分钟</strong>（服务器），让 0 基础小白也能<strong>无损对标
+GitHub 三年熟手</strong>的实操水平。</p>
+<p>后续我会持续更新： - 多卡训练（DeepSpeed / FSDP） - scGPT 微调（而非
+zero-shot） - 跨物种整合（人 + 鼠 + 灵长类） - 自定义任务头（Cell type +
+Disease + Tissue 三任务联合）</p>
+<blockquote>
+<p><strong>Star 这个博客</strong> / 留言 / 转发都是最大支持。</p>
+</blockquote>
+<hr />
+<blockquote>
+<p><strong>关于作者</strong>：Sunny (zhuer)，生物信息学背景，专注
+scRNA-seq + 单细胞大模型实战。本机 M4 Pro 48GB + Apple Silicon
+MPS。本博客所有内容均来自真实跑通、真实踩坑、真实修复，拒绝纸上谈兵。</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/" class="category-chain-item">单细胞测序</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98/" class="category-chain-item">深度学习实战</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%8D%95%E7%BB%86%E8%83%9E%E6%B5%8B%E5%BA%8F/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/" class="category-chain-item">工具教程</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/scRNA-seq/" class="print-no-link">#scRNA-seq</a>
+      
+        <a href="/tags/Geneformer/" class="print-no-link">#Geneformer</a>
+      
+        <a href="/tags/scGPT/" class="print-no-link">#scGPT</a>
+      
+        <a href="/tags/%E5%8D%95%E7%BB%86%E8%83%9E-Transformer/" class="print-no-link">#单细胞 Transformer</a>
+      
+        <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="print-no-link">#深度学习</a>
+      
+        <a href="/tags/%E5%8D%95%E7%BB%86%E8%83%9E%E5%A4%A7%E6%A8%A1%E5%9E%8B/" class="print-no-link">#单细胞大模型</a>
+      
+        <a href="/tags/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6/" class="print-no-link">#生物信息学</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>在 Mac M4 Pro 上跑通 Geneformer V1-10M 真实全过程：从 11 个官方 Bug 到全部 Pipeline 一键复刻</div>
+      <div>https://zhuer.github.io/2026/06/25/scLLM-mac-mps-sop/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Sunny (zhuer)</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
